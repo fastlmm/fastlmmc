@@ -1,0 +1,13 @@
+# Vendored third-party math libraries (MKL/ACML binaries, ~1.2 GB) are not tracked.
+Cpp/Externals/Intel/
+Cpp/Externals/AMD/
+# Build output and per-user Visual Studio state
+x64/
+x86/
+*.sdf
+*.suo
+*.user
+*.obj
+*.pdb
+*.ilk
+build/
