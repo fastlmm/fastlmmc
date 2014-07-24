@@ -1,17 +1,24 @@
 #if !defined( CSnpData_h )
 #define CSnpData_h
 /*
- * Copyright (c) Microsoft Corporation -- All rights reserved
+ *******************************************************************
  *
- * Microsoft makes no representations about the fitness nor
- * suitability of this software for any purpose.  It is provided
- * "as is" with neither expressed nor implied warranty.
+ *    Copyright (c) Microsoft. All rights reserved.
  *
+ *    THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
+ *    ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY
+ *    IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR
+ *    PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
+ *
+ ******************************************************************
+ */
+
+/*
  * CSnpData - {SNP Data Class}
  *
  *         File Name:   CSnpData.h
  *           Version:   1.00
- *            Author:   BobD
+ *            Author:   
  *     Creation Date:   18 Nov 2010
  *     Revision Date:   18 Nov 2010
  *
@@ -45,7 +52,7 @@ public:
    map<string, size_t> columnMap;      // map column to column index
    map<string, size_t> rowMap;         // map column to column index
 
-   double         *snpArray;
+   real         *snpArray;
 
    CSnpData();
    ~CSnpData();
@@ -55,7 +62,7 @@ public:
    void CreateColumnMajorArrayFromVectorsAndMapping( vector<string> columnLabelOrder );
 
 private:
-   double DoubleFromChar( char ch );
+   real realFromChar( char ch );
    };
 
 

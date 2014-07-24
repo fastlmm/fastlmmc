@@ -1,8 +1,23 @@
+/*
+ *******************************************************************
+ *
+ *    Copyright (c) Microsoft. All rights reserved.
+ *
+ *    THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
+ *    ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY
+ *    IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR
+ *    PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
+ *
+ ******************************************************************
+ */
+
 #include "FastLmmC.h"
 
-//const double _PI = 2.0*acos(0.0);          // now defined in FastLmmC.h
-const double _halflog2pi=0.5*log(2.0*_PI);
-const double coeffsForLogGamma[] = { 12.0, -360.0, 1260.0, -1680.0, 1188.0 };
+//const real _PI = 2.0*acos(0.0);          // now defined in FastLmmC.h
+const real _halflog2pi=(real)0.5*log((real)2.0*_PI);
+const real coeffsForLogGamma[] = { 12.0, -360.0, 1260.0, -1680.0, 1188.0 };
+
+const real MathFunctions::eps_rank=(real)3E-8;
 
 // Gamma and LogGamma
 
@@ -11,18 +26,18 @@ const double coeffsForLogGamma[] = { 12.0, -360.0, 1260.0, -1680.0, 1188.0 };
 /// <param name="x">Argument of function</param>
 /// <returns>Log Gamma(x)</returns>
 /// <remarks>Accurate to eight digits for all x.</remarks>
-double MathFunctions::logGamma(double x)
+real MathFunctions::logGamma(real x)
 {
-   if (x <= 0.0){
+   if (x <= (real)0.0){
       printf("LogGamma arg=%f must be > 0.",x);
       throw(1);
    }
 
-   double res = 0.0;
-   if (x < 6.0)
+   real res = (real)0.0;
+   if (x < (real)6.0)
    {
          int toAdd = (int)floor(7 - x);
-         double v2 = 1.0;
+         real v2 = (real)1.0;
          for (int i = 0; i < toAdd; i++)
          {
             v2 *= (x + i);
@@ -30,16 +45,16 @@ double MathFunctions::logGamma(double x)
          res = -log(v2);
          x += toAdd;
    }
-   x -= 1.0;
+   x -= (real)1.0;
 
-   res += _halflog2pi + (x + 0.5) * log(x) - x;
+   res += _halflog2pi + (x + (real)0.5) * log(x) - x;
 
    // correction terms
-   double xSquared = x * x;
-   double pow = x;
+   real xSquared = x * x;
+   real pow = x;
    for (int i=0; i<5; ++i)   //the length of the coefficient array is 5.
    {
-         double newRes = res + 1.0 / (coeffsForLogGamma[i] * pow);
+         real newRes = res + (real)1.0 / (coeffsForLogGamma[i] * pow);
          if (newRes == res)
          {
             return res;
@@ -51,42 +66,39 @@ double MathFunctions::logGamma(double x)
    return res;
 }
 
-//solve the quadratic least squares system of a positive semi-definite symmetric matrix X in lower storage. On exit X holds the inverse of X and y holds the solution.
-//returns the rank of X
-int MathFunctions::leastSquares2by2SymLower(double *X, double *y){
-   double determinant=X[0]*X[3]-X[1]*X[1];
-   if ( determinant > 0.0 ){//full rank case. just solve
-      //inverse of X
-      determinant=1.0/determinant;
-      X[1]*=-1.0*determinant;
-      X[2]=X[0];
-      X[0]=determinant*X[3];
-      X[3]=X[2]*determinant;
-      X[2]=y[0];
-      //solve y
-      y[0]=X[0]*y[0]+X[1]*y[1];
-      y[1]=X[1]*y[0]+X[3]*y[1];
-      X[2]=X[1];
-      return 2;//rank2
-   }else{// see http://www.math.harvard.edu/archive/21b_fall_04/exhibits/2dmatrices/index.html for derivations of Eigenvalues and eigenvectors
-      double trace=X[0]+X[3]; //In this case the trace equals the nonzero eigenvalue L_1 in the derivation
-      if (trace == 0.0){
-         y[0]= 0.0;
-         y[1]= 0.0;
-         return 0;
-      }
-      else{
-         trace=1.0/trace;  // the inverse of the trace
-         if (X[1] == 0.0){
-            y[0]*=trace;
-            y[1]=0.0;
-         }else{
-            trace*=X[0];
-            X[2]=y[0]; //cache y[0]
-            y[0]=(X[0]*X[2]+X[1]*y[1])*trace;
-            y[1]=(X[1]*X[2]+X[0]*y[1])*trace;
-         }
-         return 1;//rank1
+// Beta and LogBeta
+/// <summary>Computes the log beta function</summary>
+double MathFunctions::LogBeta(real x, real y)
+{
+   if (x <= 0.0 || y <= 0.0){
+      printf("LogBeta args must be > 0.");
+      throw(1);
+   }
+   return MathFunctions::logGamma(x) + MathFunctions::logGamma(y) - MathFunctions::logGamma(x + y);
+}
+
+int MathFunctions::randperm(const size_t n, const real *in, real *out){
+   if (n>0){
+      out[0] = in[0];
+      size_t j;
+      for (size_t i=1; i<n; ++i){
+         j = rand() % (i+1);
+         out[i] = out[j];
+         out[j] = in[i];
       }
    }
+   return 0;
+}
+
+int MathFunctions::randperm(const size_t n, size_t *randperm){
+   if (n>0){
+      randperm[0] = 0;
+      size_t j;
+      for (size_t i=1; i<n; ++i){
+         j = rand() % (i+1);
+         randperm[i] = randperm[j];
+         randperm[j] = i;
+      }
+   }
+   return 0;
 }

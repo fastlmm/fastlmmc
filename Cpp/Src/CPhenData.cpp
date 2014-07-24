@@ -1,15 +1,22 @@
 /*
- * Copyright (c) Microsoft Corporation -- All rights reserved
+ *******************************************************************
  *
- * Microsoft makes no representations about the fitness nor
- * suitability of this software for any purpose.  It is provided
- * "as is" with neither expressed nor implied warranty.
+ *    Copyright (c) Microsoft. All rights reserved.
  *
+ *    THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
+ *    ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY
+ *    IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR
+ *    PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
+ *
+ ******************************************************************
+ */
+
+/*
  * CPhenData - {Phenotype Data Class}
  *
  *         File Name:   CPhenData.cpp
  *           Version:   1.00
- *            Author:   BobD
+ *            Author:   
  *     Creation Date:   18 Nov 2010
  *     Revision Date:   18 Nov 2010
  *
@@ -39,7 +46,7 @@
  */
 CPhenData::CPhenData()
    {
-   phenArray = NULL;
+   phenArray = nullptr;
    }
 
 CPhenData::~CPhenData()
@@ -113,10 +120,10 @@ void CPhenData::ReadPhenFile( string& phenFile )
       Fatal( "Phenotype Data must have 1 or more columns of data." );
       }
 
-   Verbose( "Found %d columns of Phenotype data", columnLabels.size() );
+   Verbose( verboseMinor, "Found %d columns of Phenotype data", columnLabels.size() );
 
    lex.NextToken( tok );         // cosume the <eol> and get the 'row' data 
-   vector<double> phenRow;
+   vector<real> phenRow;
    while( tok.type != tokEOF )   // for all the rows
       {
       if ( tok.type == tokEOL )  // a blank line is acceptable at the end of the file
@@ -143,7 +150,7 @@ void CPhenData::ReadPhenFile( string& phenFile )
       ++cRows;
       lex.NextToken( tok );         // consume the ID token.  Expect <tab>
 
-      phenRow.clear();              // accumlate a list of phenotype doubles
+      phenRow.clear();              // accumlate a list of phenotype reals
 
       while( (tok.type != tokEOF) && (tok.type != tokEOL) )
          {
@@ -159,7 +166,7 @@ void CPhenData::ReadPhenFile( string& phenFile )
             Fatal( "Expected phen data (0 or 1) for RowID: %s at Line: %d, Column: %d.  Found '%s'.", rowLabels[rowLabels.size()-1].c_str(), tok.line, tok.column, tok.text.c_str() );
             }
 
-         phenRow.push_back( atof( tok.text.c_str() ) );
+         phenRow.push_back( (real)atof( tok.text.c_str() ) );
          lex.NextToken( tok );      // consume the phenotype token
          }
 
@@ -178,7 +185,7 @@ void CPhenData::ReadPhenFile( string& phenFile )
       Fatal( "Phen Data must have 1 or more rows of data." );
       }
 
-   Verbose( "Found %d rows of Phenotype data", rowLabels.size() );
+   Verbose( verboseMinor, "Found %d rows of Phenotype data", rowLabels.size() );
    FatalIfPreviousErrors();
 
    if ( fCreateReadValidationFiles )
@@ -200,7 +207,7 @@ void CPhenData::WritePhenFile( string& phenFile )
     *   <eof>
     *
     * The first row labels the columns
-    * each subsequent row contains the data as an Attribute Name followed by a double value separated by <tab> for each column
+    * each subsequent row contains the data as an Attribute Name followed by a real value separated by <tab> for each column
     */
    FILE *pFile;
 
@@ -213,10 +220,8 @@ void CPhenData::WritePhenFile( string& phenFile )
 
    if ( !pFile )
       {
-      char szFullPath[ _MAX_PATH ];
-         
-      _fullpath( szFullPath, phenFile.c_str(), sizeof( szFullPath ) );
-      Fatal( "Cannot open output file [%s].  \n  CRT Error %d: %s", szFullPath, errno, strerror( errno ) );
+      string fullPath = FullPath( phenFile );
+      Fatal( "Cannot open output file [%s].  \n  CRT Error %d: %s", fullPath.c_str(), errno, strerror( errno ) );
       }
 
    cColumns = columnLabels.size();
@@ -251,7 +256,7 @@ void CPhenData::CreateColumnMajorArrayFromVectors()
    {
    // Create a 'Fortran' style column major array from the STL vectors<>
    size_t cphen = cColumns * cRows;
-   phenArray = new double[cphen];
+   phenArray = new real[cphen];
    for( size_t iRow=0; iRow<cRows; ++iRow )
       {
       for ( size_t iCol=0; iCol<cColumns; ++iCol )
@@ -280,14 +285,19 @@ void CPhenData::CreateColumnMajorArrayFromVectorsAndMapping( vector<string> colu
       }
 
    size_t cphen = cColumns * cRows;
-   phenArray = new double[ cphen ];
+   phenArray = new real[ cphen ];
    for ( size_t iRow=0; iRow<cRows; ++iRow )
       {
       for ( size_t iCol=0; iCol<cColumns; ++iCol )
          {
          if ( rgMap[iCol] != iCol )
             {
-            fprintf( stderr, "\n -- assign phenarray[%d]= phenVector[%d][%d]", (iRow*cColumns)+iCol, iRow, rgMap[iCol] );
+#if defined( COMPILE_FOR_WINDOWS )     // Windows/VC uses a %Iu specifier for size_t
+            const char *szFmt1 = "\n -- assign phenarray[%Iu]= phenVector[%Iu][%Iu]";
+#else                      // Linux/g++ uses a %zu specifier for size_t
+            const char *szFmt1 = "\n -- assign phenarray[%zu]= phenVector[%zu][%zu]";
+#endif
+            fprintf( stderr, szFmt1, (iRow*cColumns)+iCol, iRow, rgMap[iCol] );
             }
          phenArray[ (iRow*cColumns) + iCol ] = phenVectors[iRow][rgMap[iCol]];
          }

@@ -1,0 +1,82 @@
+#if !defined( CPlinkMapFile_h )
+#define CPlinkMapFile_h
+/*
+ *******************************************************************
+ *
+ *    Copyright (c) Microsoft. All rights reserved.
+ *
+ *    THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
+ *    ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY
+ *    IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR
+ *    PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
+ *
+ ******************************************************************
+ */
+
+/*
+ * CPlinkMapFile - {PLINK Map File Access Class}
+ *
+ *         File Name:   CPlinkMapFile.h
+ *           Version:   1.00
+ *            Author:   
+ *     Creation Date:    4 Dec 2011
+ *     Revision Date:    4 Dec 2011
+ *
+ *    Module Purpose:   This file implements the CPlinkMapFile class 
+ *                         for FastLmmC
+ *
+ *                      A .MAP file contains the following fields related
+ *                         to SNPs.
+ *                            chromosome (1-22, X, Y or 0 if unplaced)
+ *                            rs# or snp identifier         string w/o whitespace
+ *                            Genetic distance (morgans)    floating point number
+ *                            Base-pair position (bp units) integral number
+ *
+ *                      The .BIM file shares these 4 fields and adds two more
+ *                            Minor Allele                  one character
+ *                            Major Allele                  one character
+ *
+ *                      This is all represented by a SnpInfo struct
+ *
+ *    Change History:   
+ *
+ * Test Files: 
+ */
+
+// This file must be #included prior to CPLinkFile.h
+
+struct MapRecord
+   {
+   SnpInfo snpInfo;           // the MapRecord only contains SNP description information
+   };
+
+class CPlinkMapFile
+   {
+public:
+   CPlinkMapFile();
+   CPlinkMapFile( const string& filename_ );
+#if 0
+   CPlinkMapFile( const string& filename_, size_t cIndividuals_, size_t cSnps_ );
+#endif
+   ~CPlinkMapFile();
+
+   void     Load();
+   void     Load( const string& filename_ );
+
+   size_t   CountOfMapRecords() { size_t rc = rgMapRecords.size(); return( rc ); }
+   size_t   CountOfSnps() { return( CountOfMapRecords() ); }
+   SnpInfo* PSnpInfo( const string& idSnp );
+   SnpInfo* PSnpInfo( size_t idxSnpInfo );
+   MapRecord* PMapRecord( size_t idx ) { MapRecord* pmr = &rgMapRecords[ idx ]; return( pmr ); }
+
+//private:
+   string   filename;
+#if 0
+   FILE     *pFile;
+#endif
+
+   vector< MapRecord >   rgMapRecords;
+   map< string, size_t > idSnpToSnpInfoIndex;
+   };
+
+#endif      // CPlinkMapFile_h

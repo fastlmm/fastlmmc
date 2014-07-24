@@ -1,19 +1,31 @@
 #if !defined( BrentC_h )
 #define BrentC_h
+/*
+ *******************************************************************
+ *
+ *    Copyright (c) Microsoft. All rights reserved.
+ *
+ *    THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
+ *    ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY
+ *    IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR
+ *    PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
+ *
+ ******************************************************************
+ */
 
 //abstract base class for Brent functors:
 class BrentFunctor{
 public:
-   //the operator (function evaluation) takes a double as argumant and returns a double
-   virtual double operator()(const double x)=0;
+   //the operator (function evaluation) takes a real as argumant and returns a real
+   virtual real operator()(const real x)=0;
 };
 
 /// <summary>Brent's method for minimizing a 1d function</summary>
 class BrentC{
    // Machine eps
-   static double MACHEPS;
-   static double MACHEPS_SQRT;
-   static double c;
+   static real MACHEPS;
+   static real MACHEPS_SQRT;
+   static real c;
 
 public:
    /// <summary>Minimize the function over the interval [a, b]</summary>
@@ -27,7 +39,7 @@ public:
    /// <param name="quiet">print out function evaluations?</param>
    /// <returns>Point that minimizes the function</returns>
    /// <remarks>This implements the algorithm from Brent's book, "Algorithms for Minimization without Derivatives"</remarks>
-   static double minimize(BrentFunctor &f, double a, double b, double eps, double &funcx, int &numiter, int maxIter, bool quiet);
+   static real minimize(BrentFunctor &f, real a, real b, real eps, real &funcx, size_t &numiter, size_t maxIter, bool quiet);
 };
 
 #endif      //BrentC_h

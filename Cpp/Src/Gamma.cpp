@@ -1,23 +1,32 @@
+/*
+ *******************************************************************
+ *
+ *    Copyright (c) Microsoft. All rights reserved.
+ *
+ *    THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
+ *    ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY
+ *    IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR
+ *    PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
+ *
+ ******************************************************************
+ */
+
 #include "FastLmmC.h"
 
 // This is gammainc(x,a,'upper') in Matlab
 /// <summary>q-gamma function</summary>
 /// <remarks>This gammainc(x,a,'upper')in Matlab</remarks>
-double Gamma::gammaQ(double x, double a)
+real Gamma::gammaQ(real x, real a)
 {
-   if (x < a + 1.0)
+   if (x < a + (real)1.0)
    {
-         return 1.0 - Gamma::gammaIncLower(x, a);
+         return (real)1.0 - Gamma::gammaIncLower(x, a);
    }
    else
    {
          return Gamma::gammaIncUpper(x, a);
    }
 }
-
-const int MAXITER = 400;
-const double TINY = 1.0e-30;
-const double EPS = 2.2204e-016;
 
 // P(a,x) using series expansion
 // See 6.5.4 and 6.5.29:
@@ -31,11 +40,11 @@ const double EPS = 2.2204e-016;
 
 // This converges quickly for x < a + 1
 /// <summary>Lower incomplete gamma function</summary>
-double Gamma::gammaIncLower(double x, double a)
+real Gamma::gammaIncLower(real x, real a)
 {
-   double sum = 1.0 / a;
-   double frac = sum;
-   double an = a;
+   real sum = (real)1.0 / a;
+   real frac = sum;
+   real an = a;
 
    for (int i = 1; i <= MAXITER; ++i)
    {
@@ -44,7 +53,7 @@ double Gamma::gammaIncLower(double x, double a)
          sum += frac;
 
          // Stopping criterion: sum won't change
-         if (abs(frac) < abs(sum * EPS))
+         if (::abs(frac) < ::abs(sum * EPS))
             break;
    }
 
@@ -57,25 +66,25 @@ double Gamma::gammaIncLower(double x, double a)
 // Using the modified Lentz's method, described in section 5.2 of 
 // Numerical Recipes
 /// <summary>Upper incomplete gamma function</summary>
-double Gamma::gammaIncUpper(double x, double a)
+real Gamma::gammaIncUpper(real x, real a)
 {
-   double f = TINY;
-   double c = f;
-   double d = 0;
-   double aj = 1;
-   double bj = x + 1 - a;
+   real f = TINY;
+   real c = f;
+   real d = 0;
+   real aj = 1;
+   real bj = x + 1 - a;
             
    for (int i = 1; i <= MAXITER; ++i)
    {
          d = bj + aj * d;
-         if (abs(d) < TINY) d = TINY;
+         if (::abs(d) < TINY) d = TINY;
          c = bj + aj / c;
-         if (abs(c) < TINY) c = TINY;
+         if (::abs(c) < TINY) c = TINY;
          d = 1 / d;
-         double delta = c * d;
+         real delta = c * d;
          f *= delta;
 
-         if (abs(delta - 1) < EPS)
+         if (::abs(delta - 1) < EPS)
             break;
 
          bj += 2;
@@ -89,7 +98,7 @@ double Gamma::gammaIncUpper(double x, double a)
 /// <param name="x">Value at which to compute the cdf</param>
 /// <param name="k">Shape parameter</param>
 /// <param name="theta">Scale parameter</param>
-double Gamma::cdf(double x, double k, double theta)
+real Gamma::cdf(real x, real k, real theta)
 {
    if (x < 0){
       printf("Gamma::cdf argument x=%f must be >= 0",x);
@@ -106,7 +115,7 @@ double Gamma::cdf(double x, double k, double theta)
 
 /// <summary>p-gamma function</summary>
 /// <remarks>This gammainc(x,a,'lower') or gammainc(x,a) in Matlab</remarks>
-double Gamma::gammaP(double x, double a)
+real Gamma::gammaP(real x, real a)
 {
    if (x < a + 1.0)
    {
@@ -114,7 +123,7 @@ double Gamma::gammaP(double x, double a)
    }
    else
    {
-         return 1.0 - Gamma::gammaIncUpper(x, a);
+         return (real)1.0 - Gamma::gammaIncUpper(x, a);
    }
 }
 
@@ -122,12 +131,12 @@ double Gamma::gammaP(double x, double a)
 /// <param name="p">Probability at which to compute the inverse cdf</param>
 /// <param name="k">Shape parameter</param>
 /// <param name="theta">Scale parameter</param>
-double Gamma::inv(double p, double k, double theta)
+real Gamma::inv(real p, real k, real theta)
 {
    // We use an iterative search to find x - this is Excel's algorithm (I think)
 
    if (p == 0) return 0.0;
-   if (p == 1) return numeric_limits<double>::infinity( );
+   if (p == 1) return std::numeric_limits<real>::infinity( );
 
    if (p < 0 || p > 1){
          printf("Gamma::inv parameter p must be between 0 and 1.");
@@ -138,19 +147,19 @@ double Gamma::inv(double p, double k, double theta)
          throw(1);
    }
 
-   double guesslo = 0.0;
-   double ab = k * theta;
+   real guesslo = 0.0;
+   real ab = k * theta;
    // What's a good initial guess when a*b < 1 ???
-   double guesshi = ab > 1.0 ? 10.0 * ab : 10.0;
+   real guesshi = ab > (real)1.0 ? (real)10.0 * ab : (real)10.0;
 
-   double guess = 0.0;
-   double pguess;
+   real guess = 0.0;
+   real pguess;
    for (int i = 0; i < 400; ++i)
    {
-         guess = (guesslo + guesshi) * 0.5;
+         guess = (guesslo + guesshi) * (real)0.5;
          pguess = Gamma::cdf(guess, k, theta);
 
-         if (abs(p - pguess) < 1e-16)
+         if (::abs(p - pguess) < (real)1e-16)
             break;
                 
          if (pguess > p)
@@ -160,4 +169,28 @@ double Gamma::inv(double p, double k, double theta)
    }
 
    return guess;
+}
+
+        /// <summary>Computes the psi (digamma) function</summary>
+double Gamma::Psi(real k)
+{
+   real dig = 0;
+
+   if (k < 8)
+   {
+         dig = Gamma::Psi(k + 1);
+         dig -= 1.0 / k;
+   }
+   else
+   {
+         real ksq = k * k;
+         real k3 = ksq * k;
+         real k4 = ksq * ksq;
+         real k5 = k4 * k;
+         real k6 = ksq * k4;
+         real k7 = k6 * k;
+
+         dig = log(k) - 1.0 / (2.0 * k) - 1.0 / (12.0 * ksq) + 1.0 / (120.0 * k4) - 1.0 / (252.0 * k6);
+   }
+   return dig;
 }

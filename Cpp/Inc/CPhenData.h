@@ -1,17 +1,24 @@
 #if !defined( CPhenData_h )
 #define CPhenData_h
 /*
- * Copyright (c) Microsoft Corporation -- All rights reserved
+ *******************************************************************
  *
- * Microsoft makes no representations about the fitness nor
- * suitability of this software for any purpose.  It is provided
- * "as is" with neither expressed nor implied warranty.
+ *    Copyright (c) Microsoft. All rights reserved.
  *
+ *    THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
+ *    ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY
+ *    IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR
+ *    PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
+ *
+ ******************************************************************
+ */
+
+/*
  * CPhenData - {Phenotype Data Class}
  *
  *         File Name:   CPhenData.h
  *           Version:   1.00
- *            Author:   BobD
+ *            Author:   
  *     Creation Date:   18 Nov 2010
  *     Revision Date:   18 Nov 2010
  *
@@ -29,6 +36,14 @@
 /*
  * 'Publish' our defines
  */
+typedef real   Phenotype;        // Phenotypes are 'real' values
+                                 // -9=missing, 0=missing, 1=unaffected, 2=affected, or real (anything other than 0,1,2,-9)
+enum PhenotypeType               // The type of a phenotype indicates how to treat the phenotype 'value'
+   {
+   PHENOTYPE_UNINITIALIZED = 0
+  ,PHENOTYPE_AFFECTION     = 1          // A phenotype where 1.0 = unaffected and 2.0 = affected
+  ,PHENOTYPE_QUANTITATIVE  = 2          // A phenotype with a real value representing 'weighting'
+   };
 
 /*
  * 'Publish' our class declarations / function prototypes
@@ -38,14 +53,14 @@ class CPhenData
 public:
    vector<string> rowLabels;
    vector<string> columnLabels;
-   vector<vector<double> > phenVectors;       // temporary storage of Phenotype reads
+   vector<vector<real> > phenVectors;       // temporary storage of Phenotype reads
 
    size_t         cRows;
    size_t         cColumns;
    map<string, size_t> columnMap;      // map column to column index
    map<string, size_t> rowMap;         // map column to column index
 
-   double         *phenArray;
+   real         *phenArray;
 
    CPhenData();
    ~CPhenData();

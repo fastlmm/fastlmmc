@@ -1,30 +1,76 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
+    <ClCompile Include="Src\Beta.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\BrentC.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\CCovariatesData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\CKernelData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\CLexer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\CPhenData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\CPlinkAlternatePhenotypeFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\CPlinkFile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\CPlinkLexer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\CSnpData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\EigenStratImputation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\EigenSym.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\FastLMM.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\FastLMM_fullrank.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\FastLMM_lowrank.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\FastLMM_woodbury.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Src\FastLmmC.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Splash.cpp">
+    <ClCompile Include="Src\FisherF.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Utils.cpp">
+    <ClCompile Include="Src\Gamma.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Src\LmmGwas.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\MathFunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\MatrixIO.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Qval.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Splash.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Src\Startup.cpp">
@@ -33,57 +79,111 @@
     <ClCompile Include="Src\TsvLexer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\CSnpData.cpp">
+    <ClCompile Include="Src\Utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\FastLMM_fullrank.cpp">
+    <ClCompile Include="Src\GroupSim.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\CPhenData.cpp">
+    <ClCompile Include="Src\LinReg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\CKernelData.cpp">
+    <ClCompile Include="Src\StudyData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\EigenStratImputation.cpp">
+    <ClCompile Include="Src\CPlinkMapFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\FastLMM_lowrank.cpp">
+    <ClCompile Include="Src\CPlinkDatFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\BrentC.cpp">
+    <ClCompile Include="Src\CPlinkBedFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Qval.cpp">
+    <ClCompile Include="Src\CSnpFilterOptions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\FastLMM.cpp">
+    <ClCompile Include="Src\CPlinkBigFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\EigenSym.cpp">
+    <ClCompile Include="Src\CLogisticRegression.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\MatrixIO.cpp">
+    <ClCompile Include="Src\CPlinkBimFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\MathFunctions.cpp">
+    <ClCompile Include="Src\CPlinkFamFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Gamma.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\CPlinkFile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Src\CLexer.cpp">
+    <ClCompile Include="Src\AutoSelectSnps.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Inc\Beta.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\BlasLapack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\BrentC.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CCovariatesData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CKernelData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CLexer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CPhenData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CPlinkAlternatePhenotypeFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CPlinkLexer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CSnpData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\EigenSym.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\FastLMM.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\FastLMM_fullrank.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\FastLMM_lowrank.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\FastLMM_woodbury.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Inc\FastLmmC.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\Utils.h">
+    <ClInclude Include="Inc\FisherF.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Gamma.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\LmmGwas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\MathFunctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\MatrixIO.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\Qval.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Inc\Startup.h">
@@ -92,58 +192,68 @@
     <ClInclude Include="Inc\TsvLexer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\CSnpData.h">
+    <ClInclude Include="Inc\Utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\FastLMM_fullrank.h">
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Inc\CPlinkMapFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\CPhenData.h">
+    <ClInclude Include="Inc\CSnpInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\CKernelData.h">
+    <ClInclude Include="Inc\CPlinkDatFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\FastLMM_lowrank.h">
+    <ClInclude Include="Inc\GroupSim.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\BrentC.h">
+    <ClInclude Include="Inc\LinReg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\Qval.h">
+    <ClInclude Include="Inc\StudyData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\FastLMM.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\EigenSym.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\LmmGwas.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\MatrixIO.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\MathFunctions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\Gamma.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Inc\BlasLapack.h">
+    <ClInclude Include="Inc\CPlinkBedFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Inc\CPlinkFile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Inc\CLexer.h">
+    <ClInclude Include="Inc\CSnpFilterOptions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CPlinkBigFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\minimize.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\vec.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CLogisticRegression.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CPlinkBimFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CPlinkFamFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\AutoSelectSnps.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="FastLmmC.rc">
-      <Filter>Resource Files</Filter>
-    </ResourceCompile>
+    <ResourceCompile Include="FastLmmC.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{35732c4d-b396-44d8-8b69-e25440088fde}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{1b370640-a81d-4dcd-9c78-3c1cfcf73a1f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

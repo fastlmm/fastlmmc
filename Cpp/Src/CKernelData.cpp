@@ -1,15 +1,22 @@
 /*
- * Copyright (c) Microsoft Corporation -- All rights reserved
+ *******************************************************************
  *
- * Microsoft makes no representations about the fitness nor
- * suitability of this software for any purpose.  It is provided
- * "as is" with neither expressed nor implied warranty.
+ *    Copyright (c) Microsoft. All rights reserved.
  *
+ *    THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
+ *    ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY
+ *    IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR
+ *    PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
+ *
+ ******************************************************************
+ */
+
+/*
  * CKernelData - {Kernel Data Class}
  *
  *         File Name:   CKernelData.cpp
  *           Version:   1.00
- *            Author:   BobD
+ *            Author:   
  *     Creation Date:   18 Nov 2010
  *     Revision Date:   18 Nov 2010
  *
@@ -39,7 +46,7 @@
  */
 CKernelData::CKernelData()
    {
-   kernelArray = NULL;
+   kernelArray = nullptr;
    }
 
 CKernelData::~CKernelData()
@@ -50,7 +57,7 @@ CKernelData::~CKernelData()
       }
    }
 
-void CKernelData::ReadKernelFile( string& kernelFile )
+void CKernelData::ReadKernelFile( const string& kernelFile )
    {
    /*
     * The kernel file we read is a tab separated file with the form
@@ -61,7 +68,7 @@ void CKernelData::ReadKernelFile( string& kernelFile )
     *   <eof>
     *
     * The first row labels the columns
-    * each subsequent row contains the data as an Attribute Name followed by a double value separated by <tab> for each column
+    * each subsequent row contains the data as an Attribute Name followed by a real value separated by <tab> for each column
     */
    cRows = 0;
    cColumns = 0;
@@ -113,11 +120,11 @@ void CKernelData::ReadKernelFile( string& kernelFile )
       Fatal( "Kernel Data must have 1 or more columns of data." );
       }
 
-   Verbose( "Found %d columns of Kernel data", columnLabels.size() );
+   Verbose( verboseMinor, "Found %d columns of Kernel data", columnLabels.size() );
 
    lex.NextToken( tok );         // consume the <eol> and setup for label
    // Now get the rows
-   vector<double> kernelRow;
+   vector<real> kernelRow;
    while( tok.type != tokEOF )   // for all the rows
       {
       if ( tok.type == tokEOL )  // a blank line is acceptable at the end of the file
@@ -152,13 +159,13 @@ void CKernelData::ReadKernelFile( string& kernelFile )
             {
             Fatal( "Expected <tab> after row label on RowID: %s, Line: %d", rowLabels[rowLabels.size()-1].c_str(), tok.line );
             }
-         lex.NextToken( tok );      // kernel id double
+         lex.NextToken( tok );      // kernel id real
          if ( tok.type != tokSymbol )
             {
             Fatal( "Expected kernel data (0 or 1) for RowID: %s at Line: %d, Column: %d.  Found '%s'.", rowLabels[rowLabels.size()-1].c_str(), tok.line, tok.column, tok.text.c_str() );
             }
 
-         kernelRow.push_back( atof( tok.text.c_str() ) );
+         kernelRow.push_back( (real)atof( tok.text.c_str() ) );
          lex.NextToken( tok );      // consume the kernel info type token
          }
 
@@ -178,10 +185,11 @@ void CKernelData::ReadKernelFile( string& kernelFile )
       }
    if ( cColumns != cRows )
       {
-      Fatal( "Kernel must be a square matrix.  We have [%d] columns and [%d] rows.", cColumns, cRows );
+      // Fatal( "Kernel must be a square matrix.  We have [%d] columns and [%d] rows.", cColumns, cRows );//should be Fatal
+      Warn( "Kernel must be a square matrix.  We have [%d] columns and [%d] rows.", cColumns, cRows );   //should be Fatal
       }
 
-   Verbose( "Found %d rows of Kernel data", rowLabels.size() );
+   Verbose( verboseMinor, "Found %d rows of Kernel data", rowLabels.size() );
    FatalIfPreviousErrors();
 
    if ( fCreateReadValidationFiles )
@@ -191,7 +199,7 @@ void CKernelData::ReadKernelFile( string& kernelFile )
       }
    }
 
-void CKernelData::WriteKernelFile( string& kernelFile )
+void CKernelData::WriteKernelFile( const string& kernelFile )
    {
    /*
     * The kernel file we write is a tab separated file with the form
@@ -202,7 +210,7 @@ void CKernelData::WriteKernelFile( string& kernelFile )
     *   <eof>
     *
     * The first row labels the columns
-    * each subsequent row contains the data as an Attribute Name followed by a double value separated by <tab> for each column
+    * each subsequent row contains the data as an Attribute Name followed by a real value separated by <tab> for each column
     */
    FILE *pFile;
 
@@ -215,10 +223,8 @@ void CKernelData::WriteKernelFile( string& kernelFile )
 
    if ( !pFile )
       {
-      char szFullPath[ _MAX_PATH ];
-         
-      _fullpath( szFullPath, kernelFile.c_str(), sizeof( szFullPath ) );
-      Fatal( "Cannot open output file [%s].  \n  CRT Error %d: %s", szFullPath, errno, strerror( errno ) );
+      string fullPath = FullPath( kernelFile );
+      Fatal( "Cannot open output file [%s].  \n  CRT Error %d: %s", fullPath.c_str(), errno, strerror( errno ) );
       }
 
    cColumns = columnLabels.size();
@@ -254,7 +260,7 @@ void CKernelData::CreateColumnMajorArrayFromVectors()
    // create the appropriate array / memory structure for the snp data.
    //   this creates the array in FORTRAN's and MatLab's column major order
    size_t ckernel = cColumns * cRows;
-   kernelArray = new double[ckernel];
+   kernelArray = new real[ckernel];
    for( size_t iRow=0; iRow<cRows; ++iRow )
       {
       for ( size_t iCol=0; iCol<cColumns; ++iCol )
@@ -264,42 +270,47 @@ void CKernelData::CreateColumnMajorArrayFromVectors()
       }
    }
 
-void CKernelData::CreateColumnMajorArrayFromVectorsAndMapping( vector<string> columnLabelOrder )
+void CKernelData::CreateColumnMajorArrayFromVectorsAndMapping( const vector<string>& columnLabelOrder )
    {
    // Create a 'Fortran' style column major array but use the columnLabelOrder to order the columns
-   if ( cColumns != columnLabelOrder.size() )
+   if ( cColumns < columnLabelOrder.size() )
       {
-      Fatal( "Cannot create KernelData column major array from Vector and Mapping.  Vectors are different lengths.  "
+      Fatal( "Cannot create KernelData column major array from Vector and Mapping.  The kernel has fewer individuals than there are phenotype values.  "
              "KernelColumns[%d] and mapping[%d]", cColumns, columnLabelOrder.size() );
       }
+   else if( cColumns > columnLabelOrder.size() )
+      {
+      Verbose( verboseMajor, "The kernel has more individuals than there are phenotype values. Removing columns from the kernel...  "
+             "KernelColumns[%d] and mapping[%d]", cColumns, columnLabelOrder.size());
+      }
 
-   vector<size_t> rgMapColumns( cColumns );
-   for( size_t iCol=0; iCol<cColumns; ++iCol )
+   vector<size_t> rgMapColumns( columnLabelOrder.size() );
+   for( size_t iCol=0; iCol<columnLabelOrder.size(); ++iCol )
       {
       if ( columnMap.count( columnLabelOrder[iCol] ) != 1 )
          {
-         Fatal( "Cannot create column major array from Vector and Mapping.  kernelColumns does not contain mapping key [%s]", columnLabelOrder[iCol].c_str() );
+         Fatal( "Cannot create column major array from Vector and Mapping.  kernelColumns contains [%i] copies of mapping key [%s] (epected 1 copy)", columnMap.count( columnLabelOrder[iCol] ), columnLabelOrder[iCol].c_str() );
          }
       rgMapColumns[iCol] = columnMap[ columnLabelOrder[iCol] ];
       }
 
-   vector<size_t> rgMapRows( cColumns );
-   for( size_t iRow=0; iRow<cRows; ++iRow )
+   vector<size_t> rgMapRows( columnLabelOrder.size() );
+   for( size_t iRow=0; iRow<columnLabelOrder.size(); ++iRow )
       {
       if ( rowMap.count( columnLabelOrder[iRow] ) != 1 )
          {
-         Fatal( "Cannot create column major array from Vector and Mapping.  kernelRows does not contain mapping key [%s]", columnLabelOrder[iRow].c_str() );
+         Fatal( "Cannot create column major array from Vector and Mapping.  kernelRows contains [%i] copies of mapping key [%s] (epected 1 copy)", columnMap.count( columnLabelOrder[iRow] ), columnLabelOrder[iRow].c_str() );
          }
       rgMapRows[iRow] = columnMap[ columnLabelOrder[iRow] ];
       }
 
-   size_t ckernel = cColumns * cRows;
-   kernelArray = new double[ ckernel ];
-   for ( size_t iRow=0; iRow<cRows; ++iRow )
+   size_t ckernel = columnLabelOrder.size() * columnLabelOrder.size();
+   kernelArray = new real[ ckernel ];
+   for ( size_t iRow=0; iRow<columnLabelOrder.size(); ++iRow )
       {
-      for ( size_t iCol=0; iCol<cColumns; ++iCol )
+      for ( size_t iCol=0; iCol<columnLabelOrder.size(); ++iCol )
          {
-         kernelArray[ (iRow*cColumns) + iCol ] = kernelVectors[rgMapRows[iRow]][rgMapColumns[iCol]];
+         kernelArray[ (iRow*columnLabelOrder.size()) + iCol ] = kernelVectors[rgMapRows[iRow]][rgMapColumns[iCol]];
          }
       }
    }

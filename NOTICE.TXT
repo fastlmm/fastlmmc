@@ -1,0 +1,58 @@
+Microsoft Research License Agreement
+Non-Commercial Use Only 
+Copyright (c) Microsoft Corporation. All rights reserved. 
+FaST-LMM 
+_____________________________________________________________________
+
+This software is released under the Microsoft Research License 
+Agreement, ("MSR-LA" or the "License"); you may not use the software 
+except in compliance with the License. You can find a copy of the 
+License in the file LICENSE.TXT accompanying this file. 
+_____________________________________________________________________
+
+Versions of this software may also rely on additional libraries and 
+code distributed under their respective licenses.  To re-compile or 
+build this code or derivatives thereof, you may be required to 
+individually download and appropriately license some or all of of 
+these additional libraries for your specific use.
+_____________________________________________________________________
+Additional Copyrights:
+
+  Intel Math Kernel Library (MKL) v10.03.07
+  Intel® Math Kernel Library (Intel® MKL) is a computing math library 
+  of highly optimized, extensively threaded math routines for applications 
+  that require maximum performance. Core math functions include BLAS, 
+  LAPACK, ScaLAPACK1, sparse solvers, fast Fourier transforms, vector 
+  math, and more.
+  http://software.intel.com/en-us/articles/intel-mkl/
+  NOTE:  Under the terms of the MKL License we redistribute a binary
+  version of the MKL reditributable Runtime for use with FastLmmC to
+  facilitate the user installation experience.
+_____________________________________________________________________
+  AMD Core Math Library (ACML) v4.4.0
+  ACML provides a free set of thoroughly optimized and threaded math 
+  routines for HPC, scientific, engineering and related compute-intensive 
+  applications. ACML is ideal for weather modeling, computational fluid 
+  dynamics, financial analysis, oil and gas applications and more.
+  http://developer.amd.com/libraries/acml/pages/default.aspx
+_____________________________________________________________________
+  ShowTime v1.00.0017 Copyright TallShip Software
+  ShowTime is used in the build process to to format strings with 
+  the build machine's hostname and timestamps for use in the program
+  banner.  This is generated during the pre-build step and compiled
+  into the C++ version (FastLmmC.exe).
+  ShowTime is freeware and the license is:
+    ShowTime is freeware.  TallShip Software makes no warranties
+    regarding the program's fitness for any purpose.  If it does
+    what you want, you may freely use it or give copies of this
+    program away if it suits your purpose.  There is no support.
+    If it works, great.  If not, don't use it.
+
+_____________________________________________________________________
+  zlib v1.2.7 Copyright © 1995-2012 Jean-loup Gailly and Mark Adler. 
+  zlib is designed to be a free, general-purpose, legally unencumbered
+  -- that is, not covered by any patents -- lossless data-compression 
+  library for use on virtually any computer hardware and operating 
+  system. The zlib data format is itself portable across platforms.
+  The zlib website provides more details and is http://zlib.net
+  

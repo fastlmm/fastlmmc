@@ -1,15 +1,22 @@
 /*
- * Copyright (c) Microsoft Corporation -- All rights reserved
+ *******************************************************************
  *
- * Microsoft makes no representations about the fitness nor
- * suitability of this software for any purpose.  It is provided
- * "as is" with neither expressed nor implied warranty.
+ *    Copyright (c) Microsoft. All rights reserved.
  *
- * FastLmmC - {Fast Linear Mixed Model in C++}
+ *    THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
+ *    ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY
+ *    IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR
+ *    PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
+ *
+ ******************************************************************
+ */
+
+/*
+ * TsvLexer - {Tab Separated Lexer for FastLmmC}
  *
  *         File Name:   TsvLexer.cpp [Tab Separated Values Lexer]
  *           Version:   1.00
- *            Author:   BobD
+ *            Author:   
  *     Creation Date:   18 Nov 2010
  *     Revision Date:   18 Nov 2010
  *
@@ -36,8 +43,9 @@
 /*
  * The code
  */
-CTsvLexer::CTsvLexer( string filename ) : CLexer(filename)
+CTsvLexer::CTsvLexer( string filename ) : CLexer( filename )
    {
+   // CLexer does all the initialization
    }
 
 CTsvLexer::~CTsvLexer()

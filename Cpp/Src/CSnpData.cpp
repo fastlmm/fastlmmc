@@ -1,10 +1,17 @@
 /*
- * Copyright (c) Microsoft Corporation -- All rights reserved
+ *******************************************************************
  *
- * Microsoft makes no representations about the fitness nor
- * suitability of this software for any purpose.  It is provided
- * "as is" with neither expressed nor implied warranty.
+ *    Copyright (c) Microsoft. All rights reserved.
  *
+ *    THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
+ *    ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY
+ *    IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR
+ *    PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
+ *
+ ******************************************************************
+ */
+ 
+/*
  * CSnpData - {SNP Data Class}
  *
  *         File Name:   CSnpData.cpp
@@ -33,16 +40,13 @@
 /*
  * Globals we define
  */
-union _mynan {
-   unsigned char chNaN[8];
-   double NaN;
-   } myNaN = { 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0x7f };
+
 /*
  * The code
  */
 CSnpData::CSnpData()
    {
-   snpArray = NULL;
+   snpArray = nullptr;
    }
 
 CSnpData::~CSnpData()
@@ -116,7 +120,7 @@ void CSnpData::ReadSnpFile( string& snpFile )
       Fatal( "SNP Data must have 1 or more columns of data." );
       }
 
-   Verbose( "Found %d columns of SNP data", columnLabels.size() );
+   Verbose( verboseMinor, "Found %d columns of SNP data", columnLabels.size() );
 
    lex.NextToken( tok );         // consume the <eol> and get the 'row' data
    while( tok.type != tokEOF )   // for all the rows
@@ -186,7 +190,7 @@ void CSnpData::ReadSnpFile( string& snpFile )
       Fatal( "SNP Data must have 1 or more rows of data." );
       }
 
-   Verbose( "Found %d rows of SNP data", rowLabels.size() );
+   Verbose( verboseMinor, "Found %d rows of SNP data", rowLabels.size() );
    FatalIfPreviousErrors();
 
    if ( fCreateReadValidationFiles )         // test global to write validation file 
@@ -208,7 +212,7 @@ void CSnpData::WriteSnpFile( string& snpFile )
     *   <eof>
     *
     * The first row labels the columns
-    * each subsequent row contains the data as an Attribute Name followed by a double value separated by <tab> for each column
+    * each subsequent row contains the data as an Attribute Name followed by a real value separated by <tab> for each column
     */
    FILE *pFile;
 
@@ -221,10 +225,8 @@ void CSnpData::WriteSnpFile( string& snpFile )
 
    if ( !pFile )
       {
-      char szFullPath[ _MAX_PATH ];
-         
-      _fullpath( szFullPath, snpFile.c_str(), sizeof( szFullPath ) );
-      Fatal( "Cannot open output file [%s].  \n  CRT Error %d: %s", szFullPath, errno, strerror( errno ) );
+      string fullPath = FullPath( snpFile );
+      Fatal( "Cannot open output file [%s].  \n  CRT Error %d: %s", fullPath.c_str(), errno, strerror( errno ) );
       }
 
    // Write the first row (var\t<columnLabels><eol>)
@@ -248,12 +250,12 @@ void CSnpData::CreateColumnMajorArrayFromVectors()
    // create the appropriate array / memory structure for the snp data.
    //   this creates the array in FORTRAN's and MatLab's column major order
    size_t cArrayElements = cColumns * cRows;
-   snpArray = new double[cArrayElements];
+   snpArray = new real[cArrayElements];
    for( size_t i=0; i<cRows; ++i )
       {
       for ( size_t j=0; j<cColumns; ++j )
          {
-         snpArray[ (i*cColumns)+j ] = DoubleFromChar( snpVectors[i][j] );
+         snpArray[ (i*cColumns)+j ] = realFromChar( snpVectors[i][j] );
          }
       }
    }
@@ -277,24 +279,24 @@ void CSnpData::CreateColumnMajorArrayFromVectorsAndMapping( vector<string> colum
       }
 
    size_t csnp = cColumns * cRows;
-   snpArray = new double[ csnp ];
+   snpArray = new real[ csnp ];
    for ( size_t iRow=0; iRow<cRows; ++iRow )
       {
       for ( size_t iCol=0; iCol<cColumns; ++iCol )
          {
          if ( rgMap[iCol] != iCol )
             {
-            Verbose( "\n -- assign snparray[%d]= snpVector[%d][%d]", (iRow*cColumns)+iCol, iRow, rgMap[iCol] );
+            Verbose( verboseDebug, " -- assign snparray[%d]= snpVector[%d][%d]", (iRow*cColumns)+iCol, iRow, rgMap[iCol] );
             }
          char ch = snpVectors[iRow][rgMap[iCol]];
-         snpArray[ (iRow*cColumns) + iCol ] = DoubleFromChar( ch );
+         snpArray[ (iRow*cColumns) + iCol ] = realFromChar( ch );
          }
       }
    }
 
-double CSnpData::DoubleFromChar( char ch )
+real CSnpData::realFromChar( char ch )
    {
-   double dbl;
+   real dbl;
    if (ch == '0' )
       {
       dbl = 0.0;
@@ -309,7 +311,7 @@ double CSnpData::DoubleFromChar( char ch )
       }
    else // ( ch == '?' )
       {
-      dbl = myNaN.NaN;
+      dbl = std::numeric_limits<real>::quiet_NaN();
       }
    return( dbl );
    }

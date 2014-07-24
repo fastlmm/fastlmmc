@@ -17,14 +17,6 @@
       <Configuration>ACML-Release</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Debug|Win32">
-      <Configuration>Debug</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Debug|x64">
-      <Configuration>Debug</Configuration>
-      <Platform>x64</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="MKL-Debug|Win32">
       <Configuration>MKL-Debug</Configuration>
       <Platform>Win32</Platform>
@@ -41,14 +33,6 @@
       <Configuration>MKL-Release</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|Win32">
-      <Configuration>Release</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|x64">
-      <Configuration>Release</Configuration>
-      <Platform>x64</Platform>
-    </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{54A7D9AC-A461-4F5D-B1F4-F349C6A7617F}</ProjectGuid>
@@ -60,34 +44,11 @@
     <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
-    <CharacterSet>NotSet</CharacterSet>
-    <UseIntelMKL>Sequential</UseIntelMKL>
-    <PlatformToolset>v120</PlatformToolset>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <UseDebugLibraries>true</UseDebugLibraries>
-    <CharacterSet>NotSet</CharacterSet>
-    <UseIntelMKL>Parallel</UseIntelMKL>
-    <UseILP64Interfaces>false</UseILP64Interfaces>
-    <PlatformToolset>v120</PlatformToolset>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>NotSet</CharacterSet>
-    <UseIntelMKL>No</UseIntelMKL>
-    <PlatformToolset>v120</PlatformToolset>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ACML-Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>NotSet</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
     <UseIntelMKL>No</UseIntelMKL>
     <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
@@ -96,7 +57,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>
     </WholeProgramOptimization>
-    <CharacterSet>NotSet</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
     <UseIntelMKL>No</UseIntelMKL>
     <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
@@ -104,32 +65,23 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>NotSet</CharacterSet>
-    <UseIntelMKL>No</UseIntelMKL>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseIntelMKL>Parallel</UseIntelMKL>
     <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MKL-Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>NotSet</CharacterSet>
-    <UseIntelMKL>No</UseIntelMKL>
-    <PlatformToolset>v120</PlatformToolset>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>NotSet</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
     <UseIntelMKL>Parallel</UseIntelMKL>
-    <UseILP64Interfaces>false</UseILP64Interfaces>
     <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ACML-Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>NotSet</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
     <UseIntelMKL>No</UseIntelMKL>
     <UseILP64Interfaces>false</UseILP64Interfaces>
     <PlatformToolset>v120</PlatformToolset>
@@ -138,7 +90,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>NotSet</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
     <UseIntelMKL>No</UseIntelMKL>
     <UseILP64Interfaces>false</UseILP64Interfaces>
     <PlatformToolset>v120</PlatformToolset>
@@ -147,7 +99,7 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>NotSet</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
     <UseIntelMKL>Parallel</UseIntelMKL>
     <UseILP64Interfaces>false</UseILP64Interfaces>
     <PlatformToolset>v120</PlatformToolset>
@@ -155,23 +107,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MKL-Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>NotSet</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
     <UseIntelMKL>Parallel</UseIntelMKL>
     <UseILP64Interfaces>false</UseILP64Interfaces>
     <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ACML-Release|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
@@ -183,9 +126,6 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='MKL-Debug|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ACML-Release|x64'" Label="PropertySheets">
@@ -201,19 +141,6 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)x86\$(Configuration)\</OutDir>
-    <IntDir>x86\$(Configuration)\</IntDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LinkIncremental>false</LinkIncremental>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)x86\$(Configuration)\</OutDir>
-    <IntDir>x86\$(Configuration)\</IntDir>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ACML-Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)x86\$(Configuration)\</OutDir>
@@ -234,102 +161,22 @@
     <OutDir>$(SolutionDir)x86\$(Configuration)\</OutDir>
     <IntDir>x86\$(Configuration)\</IntDir>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LinkIncremental>false</LinkIncremental>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ACML-Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ACML-Debug|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MKL-Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MKL-Debug|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)Inc;$(SolutionDir)Externals\Intel\MKL\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <TreatWarningAsError>true</TreatWarningAsError>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)Externals\Intel\MKL\Lib\ia32;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>mkl_intel_c.lib;mkl_sequential.lib;mkl_core.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <Profile>true</Profile>
-    </Link>
-    <PreBuildEvent>
-      <Command>.\Externals\Bin\ShowTime.exe // Generated file **DO NOT EDIT**\nint wVerBuild = $C$Y$M$D; \n#define szBuildHost \"$H\"\n &gt;Inc\BuildVer.h</Command>
-    </PreBuildEvent>
-    <PreBuildEvent>
-      <Message>Create Splash version/build info</Message>
-    </PreBuildEvent>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)Inc;$(SolutionDir)Externals\Intel\MKL\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)Externals\Intel\MKL\Lib\Intel64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>mkl_intel_lp64.lib;mkl_sequential.lib;mkl_core.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <Profile>true</Profile>
-    </Link>
-    <PreBuildEvent>
-      <Command>.\Externals\Bin\ShowTime.exe // Generated file **DO NOT EDIT**\nint wVerBuild = $C$Y$M$D; \n#define szBuildHost \"$H\"\n &gt;Inc\BuildVer.h</Command>
-      <Message>Create Splash version/build info</Message>
-    </PreBuildEvent>
-    <PostBuildEvent>
-      <Command>copy $(SolutionDir)\Externals\Intel\MKL\Redist\intel64\compiler\libiomp5md.dll $(OutDir)</Command>
-    </PostBuildEvent>
-    <PostBuildEvent>
-      <Message>Copy MKL parallel runtime to output directory</Message>
-    </PostBuildEvent>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
-      <Optimization>MaxSpeed</Optimization>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)Inc;$(SolutionDir)Externals\Intel\MKL\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <TreatWarningAsError>true</TreatWarningAsError>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)Externals\Intel\MKL\Lib\ia32;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>mkl_intel_c.lib;mkl_sequential.lib;mkl_core.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <Profile>true</Profile>
-    </Link>
-    <PreBuildEvent>
-      <Command>.\Externals\Bin\ShowTime.exe // Generated file **DO NOT EDIT**\nint wVerBuild = $C$Y$M$D; \n#define szBuildHost \"$H\"\n &gt;Inc\BuildVer.h</Command>
-      <Message>Create Splash version/build info</Message>
-    </PreBuildEvent>
-  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ACML-Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -340,7 +187,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;USE_ACML;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)Inc;$(SolutionDir)Externals\AMD\ACML\Pgi32\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Inc;$(SolutionDir)..\Externals\zlib\Inc;$(ACML_ROOT)\Pgi32\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
@@ -348,18 +195,18 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)Externals\AMD\ACML\Pgi32\Lib;</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ACML_ROOT)\Pgi32\Lib;</AdditionalLibraryDirectories>
       <AdditionalDependencies>libacml_dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <Profile>true</Profile>
     </Link>
     <PreBuildEvent>
-      <Command>.\Externals\Bin\ShowTime.exe // Generated file **DO NOT EDIT**\nint wVerBuild = $C$Y$M$D; \n#define szBuildHost \"$H\"\n &gt;Inc\BuildVer.h</Command>
+      <Command>..\Externals\Bin\ShowTime.exe // Generated file **DO NOT EDIT**\nint wVerBuild = $C$Y$M$D; \n#define szBuildHost \"$H\"\n &gt;Inc\BuildVer.h</Command>
       <Message>Create Splash version/build info</Message>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)\Externals\AMD\ACML\Pgi32\lib\libacml_dll.dll $(OutDir)
-copy $(SolutionDir)\Externals\AMD\ACML\Pgi32\lib\pgc.dll $(OutDir)
-copy $(SolutionDir)\Externals\AMD\ACML\Pgi32\lib\pgftnrtl.dll $(OutDir)
+      <Command>copy "$(ACML_ROOT)\Pgi32\lib\libacml_dll.dll" $(OutDir)
+copy "$(ACML_ROOT)\Pgi32\lib\pgc.dll" $(OutDir)
+copy "$(ACML_ROOT)\Pgi32\lib\pgftnrtl.dll" $(OutDir)
 </Command>
       <Message>Copy ACML DLLs to output directory</Message>
     </PostBuildEvent>
@@ -374,7 +221,7 @@ copy $(SolutionDir)\Externals\AMD\ACML\Pgi32\lib\pgftnrtl.dll $(OutDir)
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;USE_ACML;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)Inc;$(SolutionDir)Externals\AMD\ACML\Pgi32\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Inc;$(SolutionDir)..\Externals\zlib\Inc;$(ACML_ROOT)\Pgi32\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
@@ -384,18 +231,18 @@ copy $(SolutionDir)\Externals\AMD\ACML\Pgi32\lib\pgftnrtl.dll $(OutDir)
       </EnableCOMDATFolding>
       <OptimizeReferences>
       </OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)Externals\AMD\ACML\Pgi32\Lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ACML_ROOT)\Pgi32\Lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>libacml_dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <Profile>true</Profile>
     </Link>
     <PreBuildEvent>
-      <Command>.\Externals\Bin\ShowTime.exe // Generated file **DO NOT EDIT**\nint wVerBuild = $C$Y$M$D; \n#define szBuildHost \"$H\"\n &gt;Inc\BuildVer.h</Command>
+      <Command>..\Externals\Bin\ShowTime.exe // Generated file **DO NOT EDIT**\nint wVerBuild = $C$Y$M$D; \n#define szBuildHost \"$H\"\n &gt;Inc\BuildVer.h</Command>
       <Message>Create Splash version/build info</Message>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)\Externals\AMD\ACML\Pgi32\lib\libacml_dll.dll $(OutDir)
-copy $(SolutionDir)\Externals\AMD\ACML\Pgi32\lib\pgc.dll $(OutDir)
-copy $(SolutionDir)\Externals\AMD\ACML\Pgi32\lib\pgftnrtl.dll $(OutDir)
+      <Command>copy "$(ACML_ROOT)\Pgi32\lib\libacml_dll.dll" $(OutDir)
+copy "$(ACML_ROOT)\Pgi32\lib\pgc.dll" $(OutDir)
+copy "$(ACML_ROOT)\Pgi32\lib\pgftnrtl.dll" $(OutDir)
 </Command>
       <Message>Copy ACML DLLs to output directory</Message>
     </PostBuildEvent>
@@ -403,86 +250,64 @@ copy $(SolutionDir)\Externals\AMD\ACML\Pgi32\lib\pgftnrtl.dll $(OutDir)
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MKL-Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;USE_MKL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)Inc;$(SolutionDir)Externals\Intel\MKL\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Inc;$(SolutionDir)..\Externals\zlib\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <CompileAsManaged>false</CompileAsManaged>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)Externals\Intel\MKL\Lib\ia32;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>mkl_intel_c.lib;mkl_sequential.lib;mkl_core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <Profile>true</Profile>
     </Link>
     <PreBuildEvent>
-      <Command>.\Externals\Bin\ShowTime.exe // Generated file **DO NOT EDIT**\nint wVerBuild = $C$Y$M$D; \n#define szBuildHost \"$H\"\n &gt;Inc\BuildVer.h</Command>
+      <Command>..\Externals\Bin\ShowTime.exe // Generated file **DO NOT EDIT**\nint wVerBuild = $C$Y$M$D; \n#define szBuildHost \"$H\"\n &gt;Inc\BuildVer.h</Command>
       <Message>Create Splash version/build info</Message>
     </PreBuildEvent>
+    <PostBuildEvent>
+      <Message>Copy MKL parallel runtime to output directory</Message>
+      <Command>copy "$(ICPP_COMPILER12)Redist\ia32\Compiler\libiomp5md.dll" $(OutDir)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MKL-Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
-      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <Optimization>Disabled</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;USE_MKL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)Inc;$(SolutionDir)Externals\Intel\MKL\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(SolutionDir)Inc;$(SolutionDir)..\Externals\zlib\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <CompileAsManaged>false</CompileAsManaged>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)Externals\Intel\MKL\Lib\ia32;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>mkl_intel_c.lib;mkl_sequential.lib;mkl_core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\Externals\zlib\Lib\x86\Debug</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <Profile>true</Profile>
     </Link>
     <PreBuildEvent>
-      <Command>.\Externals\Bin\ShowTime.exe // Generated file **DO NOT EDIT**\nint wVerBuild = $C$Y$M$D; \n#define szBuildHost \"$H\"\n &gt;Inc\BuildVer.h</Command>
-      <Message>Create Splash version/build info</Message>
-    </PreBuildEvent>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
-      <Optimization>MaxSpeed</Optimization>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)Inc;$(SolutionDir)Externals\Intel\MKL\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <TreatWarningAsError>true</TreatWarningAsError>
-    </ClCompile>
-    <Link>
-      <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>mkl_intel_lp64.lib;mkl_sequential.lib;mkl_core.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Externals\Intel\MKL\Lib\Intel64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <Profile>true</Profile>
-    </Link>
-    <PreBuildEvent>
-      <Command>.\Externals\Bin\ShowTime.exe // Generated file **DO NOT EDIT**\nint wVerBuild = $C$Y$M$D; \n#define szBuildHost \"$H\"\n &gt;Inc\BuildVer.h</Command>
+      <Command>..\Externals\Bin\ShowTime.exe // Generated file **DO NOT EDIT**\nint wVerBuild = $C$Y$M$D; \n#define szBuildHost \"$H\"\n &gt;Inc\BuildVer.h</Command>
       <Message>Create Splash version/build info</Message>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)\Externals\Intel\MKL\Redist\intel64\compiler\libiomp5md.dll $(OutDir)</Command>
       <Message>Copy MKL parallel runtime to output directory</Message>
+      <Command>copy "$(ICPP_COMPILER12)Redist\ia32\Compiler\libiomp5md.dll" $(OutDir)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ACML-Release|x64'">
@@ -495,7 +320,7 @@ copy $(SolutionDir)\Externals\AMD\ACML\Pgi32\lib\pgftnrtl.dll $(OutDir)
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;USE_ACML;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)Inc;$(SolutionDir)Externals\AMD\ACML\Win64\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Inc;$(ACML_ROOT)\Win64\Include;$(SolutionDir)..\Externals\zlib\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
@@ -504,18 +329,19 @@ copy $(SolutionDir)\Externals\AMD\ACML\Pgi32\lib\pgftnrtl.dll $(OutDir)
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>libacml_dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Externals\AMD\ACML\Win64\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\Externals\zlib\Lib\x64\Release;$(ACML_ROOT)\Win64\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <Profile>true</Profile>
     </Link>
     <PreBuildEvent>
-      <Command>.\Externals\Bin\ShowTime.exe // Generated file **DO NOT EDIT**\nint wVerBuild = $C$Y$M$D; \n#define szBuildHost \"$H\"\n &gt;Inc\BuildVer.h</Command>
+      <Command>..\Externals\Bin\ShowTime.exe // Generated file **DO NOT EDIT**\nint wVerBuild = $C$Y$M$D; \n#define szBuildHost \"$H\"\n &gt;Inc\BuildVer.h</Command>
       <Message>Create Splash version/build info</Message>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)\Externals\AMD\ACML\Win64\lib\libacml_dll.dll $(OutDir)
-copy $(SolutionDir)\Externals\AMD\ACML\Win64\lib\libacml_mv_dll.dll $(OutDir)
-copy $(SolutionDir)\Externals\AMD\ACML\Win64\lib\pgc.dll $(OutDir)
-copy $(SolutionDir)\Externals\AMD\ACML\Win64\lib\pgftnrtl.dll $(OutDir)
+      <Command>copy "$(ACML_ROOT)\Win64\lib\libacml_dll.dll" $(OutDir)
+copy "$(ACML_ROOT)\Win64\lib\libacml_mv_dll.dll" $(OutDir)
+copy "$(ACML_ROOT)\Win64\lib\pgc.dll" $(OutDir)
+copy "$(ACML_ROOT)\Win64\lib\pgftnrtl.dll" $(OutDir)
+copy ..\Externals\zlib\Lib\x64\Debug\zlibwapi.dll $(OutDir)
 </Command>
       <Message>Copy ACML DLLs to output directory</Message>
     </PostBuildEvent>
@@ -530,7 +356,7 @@ copy $(SolutionDir)\Externals\AMD\ACML\Win64\lib\pgftnrtl.dll $(OutDir)
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;USE_ACML;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)Inc;$(SolutionDir)Externals\AMD\ACML\Win64\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Inc;$(ACML_ROOT)\Win64\Include;$(SolutionDir)..\Externals\zlib\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
@@ -542,7 +368,7 @@ copy $(SolutionDir)\Externals\AMD\ACML\Win64\lib\pgftnrtl.dll $(OutDir)
       <OptimizeReferences>
       </OptimizeReferences>
       <AdditionalDependencies>libacml_dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Externals\AMD\ACML\Win64\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\Externals\zlib\Lib\x64\Debug;$(ACML_ROOT)\Win64\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <Profile>true</Profile>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
@@ -550,14 +376,15 @@ copy $(SolutionDir)\Externals\AMD\ACML\Win64\lib\pgftnrtl.dll $(OutDir)
       </LinkTimeCodeGeneration>
     </Link>
     <PreBuildEvent>
-      <Command>.\Externals\Bin\ShowTime.exe // Generated file **DO NOT EDIT**\nint wVerBuild = $C$Y$M$D; \n#define szBuildHost \"$H\"\n &gt;Inc\BuildVer.h</Command>
+      <Command>..\Externals\Bin\ShowTime.exe // Generated file **DO NOT EDIT**\nint wVerBuild = $C$Y$M$D; \n#define szBuildHost \"$H\"\n &gt;Inc\BuildVer.h</Command>
       <Message>Create Splash version/build info</Message>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)\Externals\AMD\ACML\Win64\lib\libacml_dll.dll $(OutDir)
-copy $(SolutionDir)\Externals\AMD\ACML\Win64\lib\libacml_mv_dll.dll $(OutDir)
-copy $(SolutionDir)\Externals\AMD\ACML\Win64\lib\pgc.dll $(OutDir)
-copy $(SolutionDir)\Externals\AMD\ACML\Win64\lib\pgftnrtl.dll $(OutDir)
+      <Command>copy "$(ACML_ROOT)\Win64\lib\libacml_dll.dll" $(OutDir)
+copy "$(ACML_ROOT)\Win64\lib\libacml_mv_dll.dll" $(OutDir)
+copy "$(ACML_ROOT)\Win64\lib\pgc.dll" $(OutDir)
+copy "$(ACML_ROOT)\Win64\lib\pgftnrtl.dll" $(OutDir)
+copy ..\Externals\zlib\Lib\x64\Debug\zlibwapi.dll $(OutDir)
 </Command>
       <Message>Copy ACML DLLs to output directory</Message>
     </PostBuildEvent>
@@ -571,42 +398,47 @@ copy $(SolutionDir)\Externals\AMD\ACML\Win64\lib\pgftnrtl.dll $(OutDir)
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;USE_MKL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)Inc;$(SolutionDir)Externals\Intel\MKL\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Inc;$(SolutionDir)..\Externals\zlib\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
+      <OpenMPSupport>true</OpenMPSupport>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>mkl_intel_lp64.lib;mkl_sequential.lib;mkl_core.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Externals\Intel\MKL\Lib\Intel64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\Externals\zlib\Lib\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <Profile>true</Profile>
     </Link>
     <PreBuildEvent>
-      <Command>.\Externals\Bin\ShowTime.exe // Generated file **DO NOT EDIT**\nint wVerBuild = $C$Y$M$D; \n#define szBuildHost \"$H\"\n &gt;Inc\BuildVer.h</Command>
+      <Command>..\Externals\Bin\ShowTime.exe // Generated file **DO NOT EDIT**\nint wVerBuild = $C$Y$M$D; \n#define szBuildHost \"$H\"\n &gt;Inc\BuildVer.h</Command>
       <Message>Create Splash version/build info</Message>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)\Externals\Intel\MKL\Redist\intel64\compiler\libiomp5md.dll $(OutDir)</Command>
+      <Command>copy "$(INTEL_DEV_REDIST)Redist\Intel64\Compiler\libiomp5md.dll" $(OutDir)</Command>
       <Message>Copy MKL parallel runtime to output directory</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MKL-Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>Disabled</Optimization>
       <FunctionLevelLinking>
       </FunctionLevelLinking>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;USE_MKL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)Inc;$(SolutionDir)Externals\Intel\MKL\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Inc;$(SolutionDir)..\Externals\zlib\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <WholeProgramOptimization>false</WholeProgramOptimization>
+      <OpenMPSupport>false</OpenMPSupport>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -615,70 +447,108 @@ copy $(SolutionDir)\Externals\AMD\ACML\Win64\lib\pgftnrtl.dll $(OutDir)
       </EnableCOMDATFolding>
       <OptimizeReferences>
       </OptimizeReferences>
-      <AdditionalDependencies>mkl_intel_lp64.lib;mkl_sequential.lib;mkl_core.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)Externals\Intel\MKL\Lib\Intel64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\Externals\zlib\Lib\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <Profile>true</Profile>
       <LinkTimeCodeGeneration>
       </LinkTimeCodeGeneration>
     </Link>
     <PreBuildEvent>
-      <Command>.\Externals\Bin\ShowTime.exe // Generated file **DO NOT EDIT**\nint wVerBuild = $C$Y$M$D; \n#define szBuildHost \"$H\"\n &gt;Inc\BuildVer.h</Command>
+      <Command>..\Externals\Bin\ShowTime.exe // Generated file **DO NOT EDIT**\nint wVerBuild = $C$Y$M$D; \n#define szBuildHost \"$H\"\n &gt;Inc\BuildVer.h</Command>
       <Message>Create Splash version/build info</Message>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>copy $(SolutionDir)\Externals\Intel\MKL\Redist\intel64\compiler\libiomp5md.dll $(OutDir)</Command>
+      <Command>copy "$(INTEL_DEV_REDIST)Redist\Intel64\Compiler\libiomp5md.dll" $(OutDir)</Command>
       <Message>Copy MKL parallel runtime to output directory</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Src\AutoSelectSnps.cpp" />
+    <ClCompile Include="Src\Beta.cpp" />
     <ClCompile Include="Src\BrentC.cpp" />
+    <ClCompile Include="Src\CCovariatesData.cpp" />
     <ClCompile Include="Src\CKernelData.cpp" />
     <ClCompile Include="Src\CLexer.cpp" />
+    <ClCompile Include="Src\CLogisticRegression.cpp" />
     <ClCompile Include="Src\CPhenData.cpp" />
+    <ClCompile Include="Src\CPlinkAlternatePhenotypeFile.cpp" />
+    <ClCompile Include="Src\CPlinkBedFile.cpp" />
+    <ClCompile Include="Src\CPlinkBigFile.cpp" />
+    <ClCompile Include="Src\CPlinkBimFile.cpp" />
+    <ClCompile Include="Src\CPlinkDatFile.cpp" />
+    <ClCompile Include="Src\CPlinkFamFile.cpp" />
     <ClCompile Include="Src\CPlinkFile.cpp" />
+    <ClCompile Include="Src\CPlinkLexer.cpp" />
+    <ClCompile Include="Src\CPlinkMapFile.cpp" />
     <ClCompile Include="Src\CSnpData.cpp" />
+    <ClCompile Include="Src\CSnpFilterOptions.cpp" />
     <ClCompile Include="Src\EigenStratImputation.cpp" />
     <ClCompile Include="Src\EigenSym.cpp" />
     <ClCompile Include="Src\FastLMM.cpp" />
     <ClCompile Include="Src\FastLmmC.cpp" />
     <ClCompile Include="Src\FastLMM_fullrank.cpp" />
     <ClCompile Include="Src\FastLMM_lowrank.cpp" />
+    <ClCompile Include="Src\FastLMM_woodbury.cpp" />
+    <ClCompile Include="Src\FisherF.cpp" />
     <ClCompile Include="Src\Gamma.cpp" />
+    <ClCompile Include="Src\GroupSim.cpp" />
+    <ClCompile Include="Src\LinReg.cpp" />
     <ClCompile Include="Src\LmmGwas.cpp" />
     <ClCompile Include="Src\MathFunctions.cpp" />
     <ClCompile Include="Src\MatrixIO.cpp" />
     <ClCompile Include="Src\Qval.cpp" />
     <ClCompile Include="Src\Splash.cpp" />
     <ClCompile Include="Src\Startup.cpp" />
+    <ClCompile Include="Src\StudyData.cpp" />
     <ClCompile Include="Src\TsvLexer.cpp" />
     <ClCompile Include="Src\Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Inc\AutoSelectSnps.h" />
+    <ClInclude Include="Inc\Beta.h" />
     <ClInclude Include="Inc\BlasLapack.h" />
     <ClInclude Include="Inc\BrentC.h" />
+    <ClInclude Include="Inc\CCovariatesData.h" />
+    <ClInclude Include="Inc\CLogisticRegression.h" />
+    <ClInclude Include="Inc\CPlinkBedFile.h" />
+    <ClInclude Include="Inc\CPlinkBigFile.h" />
+    <ClInclude Include="Inc\CPlinkBimFile.h" />
+    <ClInclude Include="Inc\CPlinkDatFile.h" />
     <ClInclude Include="Inc\CKernelData.h" />
     <ClInclude Include="Inc\CLexer.h" />
     <ClInclude Include="Inc\CPhenData.h" />
+    <ClInclude Include="Inc\CPlinkAlternatePhenotypeFile.h" />
+    <ClInclude Include="Inc\CPlinkFamFile.h" />
     <ClInclude Include="Inc\CPlinkFile.h" />
+    <ClInclude Include="Inc\CPlinkLexer.h" />
+    <ClInclude Include="Inc\CPlinkMapFile.h" />
     <ClInclude Include="Inc\CSnpData.h" />
+    <ClInclude Include="Inc\CSnpFilterOptions.h" />
+    <ClInclude Include="Inc\CSnpInfo.h" />
     <ClInclude Include="Inc\EigenSym.h" />
     <ClInclude Include="Inc\FastLMM.h" />
     <ClInclude Include="Inc\FastLmmC.h" />
     <ClInclude Include="Inc\FastLMM_fullrank.h" />
     <ClInclude Include="Inc\FastLMM_lowrank.h" />
+    <ClInclude Include="Inc\FastLMM_woodbury.h" />
+    <ClInclude Include="Inc\FisherF.h" />
     <ClInclude Include="Inc\Gamma.h" />
+    <ClInclude Include="Inc\GroupSim.h" />
+    <ClInclude Include="Inc\LinReg.h" />
     <ClInclude Include="Inc\LmmGwas.h" />
     <ClInclude Include="Inc\MathFunctions.h" />
     <ClInclude Include="Inc\MatrixIO.h" />
+    <ClInclude Include="Inc\minimize.h" />
     <ClInclude Include="Inc\Qval.h" />
     <ClInclude Include="Inc\Startup.h" />
+    <ClInclude Include="Inc\StudyData.h" />
     <ClInclude Include="Inc\TsvLexer.h" />
     <ClInclude Include="Inc\Utils.h" />
+    <ClInclude Include="Inc\vec.h" />
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="FastLmmC.rc">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MKL-Debug|x64'">true</ExcludedFromBuild>
-    </ResourceCompile>
+    <ResourceCompile Include="FastLmmC.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
