@@ -59,7 +59,7 @@ using std::map;
 using std::string;
 using std::vector;
 using std::list;
-using std::min;
+//using std::min;
 
 #include "Utils.h"
 #include "Startup.h"
