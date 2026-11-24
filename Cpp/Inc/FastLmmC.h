@@ -51,7 +51,8 @@
                                  //   _CrtMemDumpAllObjectsSince()
                                  //   _CrtDumpMemoryLeaks()
 #elif defined( COMPILE_FOR_LINUX )
-#define  nullptr        NULL           // gcc does not yet support nullptr
+// gcc has supported nullptr natively since 4.6 (with -std=c++0x), so the old
+// '#define nullptr NULL' workaround is gone; NULL isn't declared here anyway.
 typedef  unsigned char  BYTE;          // common Windows types not found in gcc
 typedef  long long      __int64;
 typedef  long long      LARGE_INTEGER;

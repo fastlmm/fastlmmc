@@ -453,14 +453,17 @@ inline string MathLibName()
          }
       }
 #else
-   if ( (version.MajorVersion != 11)
+   // Pinned to the oneMKL release whose results were validated against the
+   //   FaSTLMM 2.07c MKL v11.00.04 (Build 20130517) binary.  oneMKL 2026.2.1
+   //   (PyPI mkl-devel/mkl-static) reports itself as v2026.00.02.
+   if ( (version.MajorVersion != 2026)
      || (version.MinorVersion != 0)
-     || (version.UpdateVersion != 4)
-     || (_strcmpi( version.Build, "20130517" ) != 0)
+     || (version.UpdateVersion != 2)
+     || (_strcmpi( version.Build, "20260915" ) != 0)
       )
       {
       Warn( "Unexpected MKL Version Found.  "
-          "\n          Expecting: MKL v11.00.04 - Build: 20130517"
+          "\n          Expecting: MKL v2026.00.02 - Build: 20260915"
           "\n              Found: %s", szMklVersion );
       if (getenv( "FastLmmUseAnyMklLib" ) == nullptr )
          {

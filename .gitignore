@@ -11,3 +11,8 @@ x86/
 *.pdb
 *.ilk
 build/
+Cpp/obj-mkl/
+Cpp/fastlmmc_mkl
+Cpp/fastlmmc
+Cpp/fastlmmc.bz2
+Cpp/Inc/BuildVer.h

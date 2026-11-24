@@ -113,7 +113,8 @@ inline int  _isnan( real x ) { return( x != x ); }
 inline int  _isnan( real x ) { return( std::isnan( x ) ); }
 #endif
 
-inline real abs( real x ) { return( fabs(x) ); }
+// abs( real ) is no longer defined here: modern libstdc++ (<stdlib.h>/<math.h>)
+// already provides floating-point overloads of ::abs, and redefining it conflicts.
 inline int min( int m1, int m2 ) { return( ( m1 < m2 ) ? m1 : m2 ); }
 inline real min( real m1, real m2 ) { return( (m1 < m2 ) ? m1 : m2 ); }
 inline int max( int m1, int m2 ) { return( ( m1 > m2 ) ? m1 : m2 ); }
