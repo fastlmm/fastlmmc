@@ -22,8 +22,10 @@ in the eigendecomposition. If you must run the old binary, set `MKL_CBWR=COMPATI
   individual-count check when reading `.big` files.
 - Creates the `-eigenout` folder directly instead of running a shell `mkdir` command, which
   failed on Windows for paths with forward slashes and everywhere for paths with spaces.
-- The Linux build uses a `Makefile` (replacing `DoMkl_linux.sh`). On Windows, only the
-  `MKL-Release|x64` configuration of `Cpp/FastLmmC.sln` was updated.
+- The Linux build uses a `Makefile` (replacing `DoMkl_linux.sh`). On Windows, `Cpp/FastLmmC.sln`
+  now has two configurations, `MKL-Release|x64` and `MKL-Debug|x64`. The 32-bit configurations
+  (current oneMKL has no 32-bit libraries) and the AMD ACML ones (ACML was discontinued) were
+  removed, along with `DoAcml_linux.sh`. The `USE_ACML` code paths remain in the source.
 - A regression suite, `tests/regression`, compares outputs with those of the 2.07 binary. Across
   its 42 commands, log-likelihoods agree to about 1e-14 and p-values to about 1e-6 (relative),
   the same size as the differences between the old MKL's own code paths.
@@ -56,11 +58,13 @@ Windows takes about as much setup as before. You need:
 2. **oneMKL.** Install Intel oneAPI MKL, or get it from PyPI with
    `pip install --target C:\mkl mkl-devel==2026.2.1 mkl-static==2026.2.1`; in that case the MKL
    folder is `C:\mkl\Library`.
-3. **zlib**, built as a static library with the static C runtime (`/MT`). From the zlib source
-   folder, in a "x64 Native Tools Command Prompt for VS 2022":
-   `nmake -f win32\Makefile.msc CFLAGS="-nologo -MT -W3 -O2 -Oy- -Zi -Fdzlib" zlib.lib`.
+3. **zlib**, built as a static library with the static C runtime. From the zlib source folder,
+   in a "x64 Native Tools Command Prompt for VS 2022":
+   `nmake -f win32\Makefile.msc CFLAGS="-nologo -MT -W3 -O2 -Oy- -Z7" zlib.lib`.
    Put `zlib.h` and `zconf.h` in an `include` folder, and `zlib.lib`, renamed to
-   `zlibstat.lib`, in a `lib` folder.
+   `zlibstat.lib`, in a `lib` folder. For the Debug configuration, also run
+   `nmake -f win32\Makefile.msc clean`, rebuild with `-MTd -Od` in place of `-MT -O2 -Oy-`, and
+   put that `zlibstat.lib` in `lib\Debug`.
 
 Then, from the same command prompt:
 
@@ -71,7 +75,7 @@ msbuild Cpp\FastLmmC.sln -p:Configuration=MKL-Release -p:Platform=x64
 ```
 
 The program is `Cpp\x64\MKL-Release\FastLmmC.exe`; keep `libiomp5md.dll` (copied there by the
-build) beside it.
+build) beside it. Use `-p:Configuration=MKL-Debug` for a debug build in `Cpp\x64\MKL-Debug`.
 
 ### Newer software
 

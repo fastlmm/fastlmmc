@@ -17,11 +17,11 @@ Without root, oneMKL comes from PyPI:
 `uv pip install --target ~/.cache/fastlmmcpp/mkl-2026.2.1 mkl-devel==2026.2.1 mkl-static==2026.2.1`.
 `make OPENMP=1` builds an experimental `fastlmmc-omp` with the source's OpenMP loops turned on.
 
-Windows: only the `MKL-Release|x64` configuration of `Cpp/FastLmmC.sln` is updated (Visual
-Studio 2022, toolset v143). Set `MKLROOT` (a folder with `include\` and `lib\`; for the PyPI
-`win_amd64` packages, their `Library\` folder) and `ZLIB_ROOT` (`include\` and
-`lib\zlibstat.lib`, a static zlib built with `/MT`). The other seven configurations still
-expect Visual Studio 2013, the Intel compiler integration, or AMD's discontinued ACML.
+Windows: `Cpp/FastLmmC.sln` has two configurations, `MKL-Release|x64` and `MKL-Debug|x64`
+(Visual Studio 2022, toolset v143). Set `MKLROOT` (a folder with `include\` and `lib\`; for the
+PyPI `win_amd64` packages, their `Library\` folder) and `ZLIB_ROOT` (`include\`, plus a static
+zlib as `lib\zlibstat.lib` built with `/MT` and `lib\Debug\zlibstat.lib` built with `/MTd`).
+The 32-bit and AMD ACML configurations were removed in 2.08; the `USE_ACML` code paths remain.
 
 ## Test
 

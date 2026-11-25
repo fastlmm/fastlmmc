@@ -4,39 +4,13 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FastLmmC", "FastLmmC.vcxproj", "{54A7D9AC-A461-4F5D-B1F4-F349C6A7617F}"
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 2
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://vstf-eu-dub-01.partners.extranet.microsoft.com:8443/tfs/ext04_consol_tpc
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = FastLmmC.vcxproj
-		SccLocalPath1 = .
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		ACML-Debug|Win32 = ACML-Debug|Win32
-		ACML-Debug|x64 = ACML-Debug|x64
-		ACML-Release|Win32 = ACML-Release|Win32
-		ACML-Release|x64 = ACML-Release|x64
-		MKL-Debug|Win32 = MKL-Debug|Win32
 		MKL-Debug|x64 = MKL-Debug|x64
-		MKL-Release|Win32 = MKL-Release|Win32
 		MKL-Release|x64 = MKL-Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{54A7D9AC-A461-4F5D-B1F4-F349C6A7617F}.ACML-Debug|Win32.ActiveCfg = ACML-Debug|Win32
-		{54A7D9AC-A461-4F5D-B1F4-F349C6A7617F}.ACML-Debug|Win32.Build.0 = ACML-Debug|Win32
-		{54A7D9AC-A461-4F5D-B1F4-F349C6A7617F}.ACML-Debug|x64.ActiveCfg = ACML-Debug|x64
-		{54A7D9AC-A461-4F5D-B1F4-F349C6A7617F}.ACML-Debug|x64.Build.0 = ACML-Debug|x64
-		{54A7D9AC-A461-4F5D-B1F4-F349C6A7617F}.ACML-Release|Win32.ActiveCfg = ACML-Release|Win32
-		{54A7D9AC-A461-4F5D-B1F4-F349C6A7617F}.ACML-Release|Win32.Build.0 = ACML-Release|Win32
-		{54A7D9AC-A461-4F5D-B1F4-F349C6A7617F}.ACML-Release|x64.ActiveCfg = ACML-Release|x64
-		{54A7D9AC-A461-4F5D-B1F4-F349C6A7617F}.ACML-Release|x64.Build.0 = ACML-Release|x64
-		{54A7D9AC-A461-4F5D-B1F4-F349C6A7617F}.MKL-Debug|Win32.ActiveCfg = MKL-Debug|Win32
-		{54A7D9AC-A461-4F5D-B1F4-F349C6A7617F}.MKL-Debug|Win32.Build.0 = MKL-Debug|Win32
 		{54A7D9AC-A461-4F5D-B1F4-F349C6A7617F}.MKL-Debug|x64.ActiveCfg = MKL-Debug|x64
 		{54A7D9AC-A461-4F5D-B1F4-F349C6A7617F}.MKL-Debug|x64.Build.0 = MKL-Debug|x64
-		{54A7D9AC-A461-4F5D-B1F4-F349C6A7617F}.MKL-Release|Win32.ActiveCfg = MKL-Release|Win32
-		{54A7D9AC-A461-4F5D-B1F4-F349C6A7617F}.MKL-Release|Win32.Build.0 = MKL-Release|Win32
 		{54A7D9AC-A461-4F5D-B1F4-F349C6A7617F}.MKL-Release|x64.ActiveCfg = MKL-Release|x64
 		{54A7D9AC-A461-4F5D-B1F4-F349C6A7617F}.MKL-Release|x64.Build.0 = MKL-Release|x64
 	EndGlobalSection

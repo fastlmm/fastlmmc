@@ -1050,7 +1050,7 @@ void LogMemoryState( const string& comment, LogFileWriteMode fOpenAppend )
                 "\t%9.3lf MB"
                 "\t%9.3lf MB"
                 "\t%9.3lf MB"
-                "\t%12ld"
+                "\t%12zu"      // cBlocksNow is size_t (long is 32-bit on Windows)
                 , comment.c_str()
                 , ((double)(crmT.lHighWaterCount))/(1024.0 * 1024.0)
                 , ((double)(crmT.lTotalCount))/(1024.0 * 1024.0)
