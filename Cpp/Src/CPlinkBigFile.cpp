@@ -73,7 +73,6 @@ CPlinkBigFile::CPlinkBigFile( const string& filename_, size_t cIndividuals_, siz
    Read( rgBuf, sizeof( rgBuf ) );
 
    //  Verify 'magic' number
-   BYTE* pb = rgBuf;
    BYTE magic1 = rgBuf[0];
    BYTE magic2 = rgBuf[1];
    if ( (bigFileMagic1 != magic1) || (bigFileMagic2 != magic2))
@@ -135,11 +134,17 @@ CPlinkBigFile::CPlinkBigFile( const string& filename_, size_t cIndividuals_, siz
    int rdCSnps = *(int*)(rgBuf+8);
    int rdCIndividuals = *(int*)(rgBuf+12);
 
-   if ( rdCSnps != cSnps_ )
+   if ( static_cast< size_t >( rdCSnps ) != cSnps_ )
       {
       Fatal( "BIG file [%s] formated differently than expected."
          "\n  Expected %d SNPs, found %d SNPs",
          filename.c_str(), cSnps_, rdCSnps );
+      }
+   if ( static_cast< size_t >( rdCIndividuals ) != cIndividuals_ )
+      {
+      Fatal( "BIG file [%s] formated differently than expected."
+         "\n  Expected %d individuals, found %d individuals",
+         filename.c_str(), cIndividuals_, rdCIndividuals );
       }
    }
 

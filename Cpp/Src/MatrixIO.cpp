@@ -113,7 +113,7 @@ int MatrixIO::readBinary2dBIN(const string& filename, const string& matrixID, si
          Fatal( "Expected the second row in file [%s] to start with 'n:' but found '%s'", headerfilename.c_str(), tok.text.c_str() );
       }
    lex.NextToken( tok );                  // consume 'n:'
-   if ( (lex.NextToken( tok ) != tokSymbol) || (atoi(tok.text.c_str()) != n) )
+   if ( (lex.NextToken( tok ) != tokSymbol) || (static_cast< size_t >( atoi(tok.text.c_str()) ) != n) )
       {
          Fatal( "Expected n in file [%s] to be '%i' but found '%s'", headerfilename.c_str(), n, tok.text.c_str() );
       }
@@ -123,7 +123,7 @@ int MatrixIO::readBinary2dBIN(const string& filename, const string& matrixID, si
          Fatal( "Expected the second row in file [%s] to start with 'm:' but found '%s'", headerfilename.c_str(), tok.text.c_str() );
       }
    lex.NextToken( tok );                  // consume 'm:'
-   if ( (lex.NextToken( tok ) != tokSymbol) || (atoi(tok.text.c_str()) != m) )
+   if ( (lex.NextToken( tok ) != tokSymbol) || (static_cast< size_t >( atoi(tok.text.c_str()) ) != m) )
       {
          Fatal( "Expected m in file [%s] to be '%i' but found '%s'", headerfilename.c_str(), m, tok.text.c_str() );
       }
@@ -183,30 +183,10 @@ int MatrixIO::writeHeaderFile(const string& filename, vector<string>& header){
 
 int MatrixIO::createDirectory(const string& dirname)
    {
-   if ( _access( dirname.c_str(), 0 ) == 0 )
-      {
-      struct stat status;
-      stat( dirname.c_str(), &status );
-      if ( status.st_mode & S_IFDIR )
-         {
-         //cout << "The directory exists." << endl;
-         }        
-      else
-         {
-         Fatal( "Cannot create directory [%s].  A file by that name already exists", dirname.c_str() );
-         }    
-      }    
-   else
-      {
-      string mkdirectory = "mkdir ";
-      mkdirectory.append( dirname );
-      int i = system( mkdirectory.c_str() );
-      if ( i == -1 )
-         {
-         Fatal( "system( %s ) returned failure.", mkdirectory.c_str() );
-         }
-      }
-
+   // MakeDirectory() calls mkdir directly.  This used to run system( "mkdir " + dirname ),
+   //   which failed on Windows for paths with forward slashes (cmd reads "/x" as a switch)
+   //   and everywhere for paths with spaces, and ignored mkdir's own failure.
+   MakeDirectory( dirname );
    return( 0 );
    }
 

@@ -42,7 +42,8 @@ extern char *szSplash;
 #include "BuildVer.h"      // get the updated build / host information (generated during build in VisualStudio)
 
 int wVerMajor = 2;         // 2.06 -> transition to VS2012 & MKL 11.0
-int wVerMinor =  07;        // odd number is 'beta' / even number is 'release'
+int wVerMinor =  8;        // odd number is 'beta' / even number is 'release'
+                           // 2.08 -> 2026 revival: oneMKL 2026.2.1, g++ 11 / VS2022 (2.07 was the 2014 release)
 //int wVerBuild = 0;       // Now set in BuildVer.h (above)
 int wVerPatch =  0;
 

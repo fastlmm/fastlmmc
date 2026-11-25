@@ -19,8 +19,12 @@ public:
    real val;         //value
    static void Display( const val_ind* p1, const val_ind* p2 )
       {
-      Progress( "\ncompare: p1->index [%d] p1->val [%.16E] 0x%16llx", p1->index, p1->val, *(long long*)(&(p1->val)) );
-      Progress( "\n         p2->index [%d] p2->val [%.16E] 0x%16llx", p2->index, p2->val, *(long long*)(&(p2->val)) );
+      // memcpy (not a pointer cast) to view the bits without breaking strict aliasing
+      long long bits1 = 0, bits2 = 0;
+      memcpy( &bits1, &p1->val, sizeof( p1->val ) );
+      memcpy( &bits2, &p2->val, sizeof( p2->val ) );
+      Progress( "\ncompare: p1->index [%d] p1->val [%.16E] 0x%16llx", p1->index, p1->val, bits1 );
+      Progress( "\n         p2->index [%d] p2->val [%.16E] 0x%16llx", p2->index, p2->val, bits2 );
       }
 
    static int compare(const void *x, const void *y)

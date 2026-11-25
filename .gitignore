@@ -12,7 +12,7 @@ x86/
 *.ilk
 build/
 Cpp/obj-mkl/
-Cpp/fastlmmc_mkl
+Cpp/obj-mkl-omp/
 Cpp/fastlmmc
-Cpp/fastlmmc.bz2
+Cpp/fastlmmc-omp
 Cpp/Inc/BuildVer.h

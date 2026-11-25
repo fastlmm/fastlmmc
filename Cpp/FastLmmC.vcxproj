@@ -102,7 +102,8 @@
     <CharacterSet>MultiByte</CharacterSet>
     <UseIntelMKL>Parallel</UseIntelMKL>
     <UseILP64Interfaces>false</UseILP64Interfaces>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MKL-Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -141,6 +142,16 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <!-- MKL-Release|x64 dependencies. MKLROOT holds include\ and lib\ (a oneAPI install, or the
+       Library\ folder of the PyPI mkl-devel + mkl-static packages). ZLIB_ROOT holds include\ and
+       lib\zlibstat.lib (static zlib built with /MT). -->
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MKL-Release|x64'">
+    <MKLROOT Condition="'$(MKLROOT)'==''">C:\Program Files (x86)\Intel\oneAPI\mkl\latest</MKLROOT>
+    <ZLIB_ROOT Condition="'$(ZLIB_ROOT)'==''">$(SolutionDir)..\Externals\zlib</ZLIB_ROOT>
+    <!-- Intel OpenMP runtime: beside MKL in the PyPI layout; with the compiler in oneAPI. -->
+    <IOMP5_ROOT Condition="'$(IOMP5_ROOT)'=='' And Exists('$(MKLROOT)\lib\libiomp5md.lib')">$(MKLROOT)</IOMP5_ROOT>
+    <IOMP5_ROOT Condition="'$(IOMP5_ROOT)'==''">$(MKLROOT)\..\..\compiler\latest</IOMP5_ROOT>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ACML-Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)x86\$(Configuration)\</OutDir>
@@ -398,7 +409,7 @@ copy ..\Externals\zlib\Lib\x64\Debug\zlibwapi.dll $(OutDir)
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;USE_MKL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)Inc;$(SolutionDir)..\Externals\zlib\Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Inc;$(MKLROOT)\include;$(ZLIB_ROOT)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <OpenMPSupport>true</OpenMPSupport>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
@@ -412,16 +423,18 @@ copy ..\Externals\zlib\Lib\x64\Debug\zlibwapi.dll $(OutDir)
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\Externals\zlib\Lib\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>mkl_intel_lp64.lib;mkl_intel_thread.lib;mkl_core.lib;libiomp5md.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(MKLROOT)\lib;$(IOMP5_ROOT)\lib;$(ZLIB_ROOT)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <!-- /openmp would pull in Microsoft's vcomp; MKL's threading layer needs Intel OpenMP instead. -->
+      <IgnoreSpecificDefaultLibraries>vcomp.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <Profile>true</Profile>
     </Link>
     <PreBuildEvent>
-      <Command>..\Externals\Bin\ShowTime.exe // Generated file **DO NOT EDIT**\nint wVerBuild = $C$Y$M$D; \n#define szBuildHost \"$H\"\n &gt;Inc\BuildVer.h</Command>
+      <Command>powershell -NoProfile -Command "Set-Content -Encoding ascii Inc\BuildVer.h -Value '// Generated file **DO NOT EDIT**', ('int wVerBuild = ' + (Get-Date -Format yyyyMMdd) + ';'), ('#define szBuildHost \"' + $env:COMPUTERNAME + '\"')"</Command>
       <Message>Create Splash version/build info</Message>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>copy "$(INTEL_DEV_REDIST)Redist\Intel64\Compiler\libiomp5md.dll" $(OutDir)</Command>
+      <Command>copy /y "$(IOMP5_ROOT)\bin\libiomp5md.dll" "$(OutDir)"</Command>
       <Message>Copy MKL parallel runtime to output directory</Message>
     </PostBuildEvent>
   </ItemDefinitionGroup>

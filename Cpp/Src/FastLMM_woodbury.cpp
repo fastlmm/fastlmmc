@@ -726,7 +726,7 @@ void FastLMM_woodbury::TrainNullAndAltForEpistatic()
    if ( fDoSnpId1 )
       {
       size_t iSnp1 = IndexFromList( snpInfo, snpId1Global );
-      if ( iSnp1 == -1 )
+      if ( iSnp1 == static_cast< size_t >( -1 ) )
          {
          Fatal( "Unable to locate SnpId [%s] in list of SNPs.", snpId1Global.c_str() );
          }

@@ -40,7 +40,6 @@ int fReportTimes = 0;            // global flag holds bit values to mask which t
 
 static int cErrorsMax = 25;
 static int cErrors = 0;
-static int cWarns = 0;
 
 long long CTimer::m_frequency = 0ll;
 
@@ -172,7 +171,7 @@ void NTLastError( void )
                   (LPTSTR) &lpMsgBuf,
                   0,
                   NULL );
-   fprintf( stderr, "\nNTError : 0x%08X : %s", err, lpMsgBuf );
+   fprintf( stderr, "\nNTError : 0x%08X : %s", err, (const char *)lpMsgBuf );
    fflush( stderr );
    LocalFree( lpMsgBuf );
    exit( 1 );
@@ -378,7 +377,7 @@ static int FCheckFile( const string& name, int mask )
    if ( rc == 0 )
       {
       // status filled out successfully
-      if ( (status.st_mode & mask) == mask )
+      if ( (status.st_mode & mask) == static_cast< decltype( status.st_mode ) >( mask ) )
          {
          // file exists and mode matches mask requirements
          return( true );
@@ -1176,7 +1175,7 @@ real PvalUsingFisherFTestCdf( real xF, real d1, real d2 )
                + (b * log( 1 - xB ))
                );
 
-#if 1
+#if 0    // debugging aids (values to inspect in a debugger); unused otherwise
    real rT01 = ( a + 1.0 ) / ( a + b + 2.0 );
    real rMin = std::numeric_limits< real >::min();
    real rEpsilon = std::numeric_limits< real >::epsilon();

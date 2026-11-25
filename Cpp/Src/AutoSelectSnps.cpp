@@ -285,7 +285,7 @@ SnpFilterOptions *SelectTopK()
    if ( pFile != nullptr )
       {
       fseek( pFile, 0, SEEK_END );
-      size_t cbFile = ftell( pFile );
+      cbFile = ftell( pFile );   // was a shadowing local, which left njobs always 1
       fclose( pFile );
       }
 
@@ -612,7 +612,7 @@ void WriteSelectedSnpsAsPedFile( const string& pedFileBase, const CPlinkFile& pl
    //    Chr SnpId GeneticDistance GeneticPosition
    string fullmap = pedFileBase + ".map";
    pFile = fopen( fullmap.c_str(), "wt" );
-   for ( int iSnpInfo = 0; iSnpInfo < plinkFileT.rgSnpInfo.size(); ++iSnpInfo )
+   for ( size_t iSnpInfo = 0; iSnpInfo < plinkFileT.rgSnpInfo.size(); ++iSnpInfo )
       {
       const SnpInfo& snpInfo = plinkFileT.rgSnpInfo[ iSnpInfo ];
       fprintf( pFile, "%s\t%s\t%f\t%d\n",
@@ -969,9 +969,6 @@ void DoAutoSelectSnps()
         
          if ( nSNPcovTest >= studyDataTrain->cIndividuals )
             {
-            size_t n_individuals = eigen->n;
-            size_t n_SNPs = studyDataTrain->cSnps;
-
             FastLMM_fullrank LMM_fullrank = FastLMM_fullrank( eigen );
 
             //As the Kernel gets bigger with the number of SNPs in the kernel the optimal delta goes up linearly with the number of SNPs in the kernel as well
@@ -990,16 +987,12 @@ void DoAutoSelectSnps()
             //get the results
             LMM_fullrank.getResultsNullOnly( results );
 
-            real est_bias = results.bias_0[0];
             real log_delta = results.delta_0[0];
-            real sigmae2 = results.sige2_0[0];
             real sigmag2 = results.sigg2_0[0];
 
 
             real delta = exp(log_delta);
-            real inv_delta = 1.0/delta;
             const int *nSNP = (const int *)&nSNPcovTest;
-            const real *inv_deltap = (const real *)&inv_delta;
             const BLAS_INT *nTrainI = (const BLAS_INT *)&studyDataTrain->cIndividuals;
             const BLAS_INT *nTestI = (const BLAS_INT *)&studyDataTest->cIndividuals;
             const BLAS_INT *nCovar = (const BLAS_INT *)&studyDataTrain->cCovariates;
@@ -1157,7 +1150,6 @@ void DoAutoSelectSnps()
             }
          else
             {
-            size_t n_individuals = eigen->n;
             size_t rankU = eigen->rankU;
    
             FastLMM_lowrank LMM_lowrank = FastLMM_lowrank( eigen );
@@ -1174,9 +1166,7 @@ void DoAutoSelectSnps()
             LMM_lowrank.updateExcludeList();
             LMM_lowrank.getResultsNullOnly( results );
 
-            real est_bias = results.bias_0[0];
             real log_delta = results.delta_0[0];
-            real sigmae2 = results.sige2_0[0];
             real sigmag2 = results.sigg2_0[0];
             //cout << "sigma e^2 : " << sigmae2 << endl;
             //cout << "sigma g^2 : " << sigmag2 << endl;

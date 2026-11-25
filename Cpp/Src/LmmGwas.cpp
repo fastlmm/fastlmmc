@@ -80,7 +80,6 @@ int computeEigenSym_SnpSample( const string& id, StudyData *data, EigenSym *eige
    if( (data->cSnpsCovariance >= data->cIndividuals) || forceFullRank )
       {
       //do the full rank model
-      BLAS_INT rankU_int = (BLAS_INT)data->cIndividuals;
       BLAS_INT n_individuals_int=(BLAS_INT)data->cIndividuals;
 
       // Compute the covariance matrix as the inner product matrix of the Covariance SNPs
@@ -151,9 +150,7 @@ int runGWAS_lowrank( EigenSym *eigen, ResultsLMM *results, StudyData *data )
    {
    Verbose( verboseMajor, " --             Do lowrank training:" );
 
-   size_t n_individuals = eigen->n;
    size_t n_Snps = data->cSnps;
-   size_t rankU = eigen->rankU;
    
    FastLMM_lowrank LMM_lowrank = FastLMM_lowrank( eigen );
    LMM_lowrank.set_Phenotype( data->phenotypeData, data->phenotypeLabels[data->ind_phenotype] );
@@ -180,9 +177,7 @@ int runGWAS_woodbury( EigenSym *eigen, ResultsLMM *results, StudyData *data )
    {
    Verbose( verboseMajor, " --            Do Woodbury training:" );
 
-   size_t n_individuals = eigen->n;
    size_t n_Snps = data->cSnps;
-   size_t rankU = eigen->rankU;
 
    FastLMM_woodbury LMM_woodbury = FastLMM_woodbury(eigen);
    if ( (data->phenotypeLabels.empty()) 
@@ -225,7 +220,6 @@ int runGWAS_woodbury( EigenSym *eigen, ResultsLMM *results, StudyData *data )
 int runGWAS_fullrank( EigenSym *eigen, ResultsLMM *results, StudyData *data )
    {
    Verbose( verboseMajor, "               Do fullrank training:" );
-   size_t n_individuals = eigen->n;
    size_t n_SNPs = data->cSnps;
 
    FastLMM_fullrank LMM_fullrank = FastLMM_fullrank( eigen );

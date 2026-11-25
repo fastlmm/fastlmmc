@@ -53,9 +53,11 @@ void CPlinkDatFile::Load()
    Load( nullptr );
    }
 
+#if defined( _MSC_VER )      // Visual C++-only pragmas
 #pragma optimize( "", off )
 #pragma warning( push )
 #pragma warning( disable : 4748 )
+#endif
 void CPlinkDatFile::Load( vector<FamRecord>* prgFam_ )
    {
    SnpDosageData         snpDD;
@@ -223,8 +225,10 @@ void CPlinkDatFile::Load( vector<FamRecord>* prgFam_ )
          }
       }
    }
+#if defined( _MSC_VER )
 #pragma warning( pop )
 #pragma optimize( "", on )
+#endif
 
 bool CPlinkDatFile::FGetSnpInfo( const string& idSnp, SnpInfo& snpInfo_ )
    {

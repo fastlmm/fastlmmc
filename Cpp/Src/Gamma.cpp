@@ -184,11 +184,8 @@ double Gamma::Psi(real k)
    else
    {
          real ksq = k * k;
-         real k3 = ksq * k;
          real k4 = ksq * ksq;
-         real k5 = k4 * k;
          real k6 = ksq * k4;
-         real k7 = k6 * k;
 
          dig = log(k) - 1.0 / (2.0 * k) - 1.0 / (12.0 * ksq) + 1.0 / (120.0 * k4) - 1.0 / (252.0 * k6);
    }

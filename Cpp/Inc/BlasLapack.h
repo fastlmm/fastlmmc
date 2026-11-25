@@ -419,7 +419,7 @@ inline void SetReproducibleFP( bool fDoReproducibleFP )
 
 inline string MathLibName()
    {
-   void Fatal( const char *szFmt, ... );
+   [[noreturn]] void Fatal( const char *szFmt, ... );
    void Warn( const char *szFmt, ... );
 #if defined( USE_MKL )
    char szMklVersion[ 64 ];

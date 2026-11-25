@@ -56,7 +56,7 @@ double CLogisticRegression::ProbRoutine( vector< double >::iterator itWgts, vect
          }
 
       auto itGradientT = itGradient;
-      for ( int iWeight = 0; iWeight<cVars; ++iWeight )
+      for ( size_t iWeight = 0; iWeight<cVars; ++iWeight )
          {
          *itGradientT = real0;
          for ( size_t iIndividual=0; iIndividual<cColumns; ++iIndividual )
@@ -270,9 +270,7 @@ void CLogisticRegression::TrainAlt()
 
 real CLogisticRegression::EvalLL( size_t ind_SNP, bool altModel )
    {
-   BLAS_INT n  = (BLAS_INT)data->cIndividuals;
    BLAS_INT d_ = (BLAS_INT)data->cCovariates;
-   real *y     = data->phenotypeData;  // point to phenotypeData in CLogisticRegression.data
    real *X     = nullptr;
    BLAS_INT *rank_beta_ = &rank_beta_0;   // rank_beta_0 is lines of covariates in null model
    real *beta_ = beta_0;                  // beta_ points to the location to hold the weight value

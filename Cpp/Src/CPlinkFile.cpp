@@ -2103,7 +2103,6 @@ void CPlinkFile::WritePedFile( const string& pedFile )
       }
 
    size_t cPedIndividuals = rgPed.size();
-   size_t cPedSnps = rgMap.size();
    for ( size_t iIndividual=0; iIndividual<cPedIndividuals; ++iIndividual )
       {
       PedRecord *pr = &rgPed[iIndividual];

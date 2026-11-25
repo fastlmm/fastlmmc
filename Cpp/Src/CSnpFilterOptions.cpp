@@ -89,7 +89,7 @@ void SnpFilterOptions::BlockRange( size_t idx, size_t& iStart, size_t& iEnd )
 // return the index value in the original file for the beginning of this block
 size_t SnpFilterOptions::IdxFromBlockId( size_t blockId )
    {
-   if ( (blockId < 0) || (blockId > cBlocksMax) )
+   if ( blockId > cBlocksMax )
       {
       Fatal( "Block out of range.  Expected less than %d, received %d", cBlocksMax, blockId );
       }
@@ -141,7 +141,7 @@ void SnpFilterOptions::SetByBlock( size_t cBlocks, size_t iBlock )
    filterType = FilterByBlock;
    cBlocksMax = cBlocks;
 
-   if ( (iBlock < 0) || (iBlock >= cBlocksMax) )
+   if ( iBlock >= cBlocksMax )
       {
       Fatal( "The block index must be less than the number of blocks to operate on[%d]. Found [%d]", cBlocksMax, iBlock );
       }
@@ -158,7 +158,7 @@ void SnpFilterOptions::SetByBlocks( size_t cBlocks, size_t iBlk1, size_t iBlk2 )
    filterType = FilterByBlocks;
    cBlocksMax = cBlocks;
 
-   if ( (iBlk1 < 0) || (iBlk1 >= cBlocksMax) )
+   if ( iBlk1 >= cBlocksMax )
       {
       Fatal( "The block1 index must be less than the number of blocks to operate on[%d]. Found [%d]", cBlocksMax, iBlk1 );
       }
@@ -224,7 +224,6 @@ void SnpFilterOptions::SetByTask( int cTasks, int iTask )
       iBlock1 = 0;
       iBlock2 = 0;
       size_t iJob = 0; //iTask;
-      size_t cBlocksInRow = cBlocksMax;
 
       for( ; iBlock1<cBlocksMax; ++iBlock1 )
          {

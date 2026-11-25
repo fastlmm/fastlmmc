@@ -1155,7 +1155,6 @@ void DoIteratingFastLmm()
    //   associated array for later processing
    covariatesData.ImputeAndZeroMeanCovariatesFix( individualLabels );
    vector< real > rgCovariateData( (cCovariates + cBiasTerms) * cIndividuals );
-   real *pRealOut = &rgCovariateData[0];
    for ( size_t iCovariate=0; iCovariate<cCovariates; ++iCovariate )
       {
       real *pRealOut = &rgCovariateData[ iCovariate * cIndividuals ];   // we get cIndividuals each pass
@@ -1197,7 +1196,6 @@ void DoIteratingFastLmm()
    size_t iCovarianceMax = 0;
    size_t iTestMin = 0;
    size_t iTestMax = 0;
-   size_t iSnp = 0;
 
    do
       {

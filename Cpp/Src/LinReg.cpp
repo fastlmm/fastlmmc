@@ -101,7 +101,7 @@ void LinReg::trainPairs()
    if ( fDoSnpId1 )
       {
       size_t iSnp1 = IndexFromList( data->snpInfo, snpId1Global );
-      if ( iSnp1 == -1 )
+      if ( iSnp1 == static_cast< size_t >( -1 ) )
          {
          Fatal( "Unable to locate SnpId [%s] in list of SNPs.", snpId1Global.c_str() );
          }
@@ -181,7 +181,6 @@ size_t LinReg::TrainNullAndAltForEpistaticWithSnpPairs( FILE *pFile, size_t iSnp
    // in order to have the least chance of misusing the univariate SNP code, 
    // I will aribitrarily put snp1 in for the "single" snp in the univariate
    // test, and put the second snp, and the interaction effect with the covariates.
-   size_t d = 1;
    size_t cIndividuals = data->cIndividuals;         // use more descriptive names for now
    size_t cCovariates = data->cCovariates;
    real* X = data->snpData;

@@ -33,7 +33,7 @@
  */
 // Console I/O Utility Routines
 void Error( const char *szFmt, ... );
-void Fatal( const char *szFmt, ... );
+[[noreturn]] void Fatal( const char *szFmt, ... );   // prints to stderr, then exit( 1 )
 void FatalIfPreviousErrors();
 void NTLastError( void );
 void Progress( const char *szFmt, ... );
@@ -158,6 +158,21 @@ unsigned int _set_output_format( unsigned int format );
 #define  _TWO_DIGIT_EXPONENT  1
 
 #endif   // COMPILE_FOR_LINUX
+
+#if defined( COMPILE_FOR_WINDOWS ) && ( _MSC_VER >= 1900 )
+/*
+ *  Visual Studio 2015's Universal CRT removed _set_output_format().  Like glibc, it always
+ *    prints at least two exponent digits, which is what callers ask for, so stub it as on Linux.
+ */
+#define  _TWO_DIGIT_EXPONENT  1
+inline unsigned int _set_output_format( unsigned int format )
+   {
+   static unsigned int old_format = 0;
+   unsigned int rc = old_format;
+   old_format = format;
+   return( rc );
+   }
+#endif
 
 /*
  *  ColumnMajor means individual column elements are located together in linear
