@@ -66,9 +66,7 @@ const char *szSplash = "\nFastLmmC %s - Factored Spectrally Transformed Linear M
       " [Release]"
 #endif
       "\n  Copyright Microsoft Corporation"
-#if !defined( COMMERCIAL_USE )
-      " -- Licensed Only for Non-Commercial use."
-#endif
+      " -- Licensed under the Apache License, Version 2.0."   // 2.07 and earlier: MSR-LA, non-commercial only
       "\n  Compiled " __DATE__ " at " __TIME__ " by " szBuildHost " for " myRuntimeHost
       "\n  using %s"
       "\n";

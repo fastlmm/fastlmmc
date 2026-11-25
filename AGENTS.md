@@ -2,8 +2,8 @@
 
 The FaST-LMM C++ program (`fastlmmc`): history imported from 2011 and 2016 snapshots and the
 2014 FaSTLMM 2.07c release, then updated in 2026 to build with current compilers and oneMKL.
-The code is under the Microsoft Research License Agreement (`LICENSE.TXT`), not an open-source
-license.
+Licensed under Apache 2.0 (`LICENSE.TXT`) starting with 2.08; through 2.07 it was under the
+non-commercial Microsoft Research License Agreement.
 
 ## Build
 

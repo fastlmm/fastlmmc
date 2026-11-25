@@ -14,6 +14,8 @@ in the eigendecomposition. If you must run the old binary, set `MKL_CBWR=COMPATI
 
 **What changed in 2.08:**
 
+- Relicensed under the Apache License, Version 2.0 (previously the Microsoft Research License
+  Agreement, non-commercial only). See [License](#license).
 - Builds against oneMKL 2026.2.1 instead of MKL 11.0.
 - Fixes for current compilers: g++ 11 (`nullptr`, `abs`) and Visual Studio 2022 (removed C
   runtime functions, a non-MFC resource header).
@@ -82,8 +84,13 @@ build) beside it. Use `-p:Configuration=MKL-Debug` for a debug build in `Cpp\x64
 For new work, consider the Python version of FaST-LMM (<https://github.com/fastlmm/FaST-LMM>),
 which is maintained and has more features.
 
-The code is under the Microsoft Research License Agreement (`LICENSE.TXT`), which permits only
-non-commercial use.
+### License
+
+Starting with 2.08, FaST-LMM C++ is licensed under the Apache License, Version 2.0
+(`LICENSE.TXT`), like the Python version of FaST-LMM. Versions through 2.07 were released under
+the Microsoft Research License Agreement, which permitted only non-commercial use; the 2.07
+README below and the 2.07 user manual (`Doc/user-manual.pdf`) still describe those old terms,
+which no longer apply. Third-party components are listed in `NOTICE.TXT`.
 
 ## Original 2.07 README
 
